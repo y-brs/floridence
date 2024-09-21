@@ -1,0 +1,12 @@
+[
+	{
+		"id": 0,
+		"imageUrl": ["/src/assets/img/flower1.jpg", "/src/assets/img/flower2.jpg"],
+		"height": "70",
+		"width": "40-55",
+		"name": "Идеальное трио",
+		"description": "",
+		"amount": [],
+		"price": [8600]
+	}
+]

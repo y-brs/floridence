@@ -1,0 +1,44 @@
+.delivery {
+	padding-bottom: 10rem;
+	&__container {
+	}
+
+	&__section {
+		margin-top: 2rem;
+	}
+	&__head {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+		margin-top: 1rem;
+		font-weight: 500;
+	}
+	&__lowhead {
+		font-size: 1.5rem;
+		line-height: 2rem;
+		font-weight: 500;
+		margin-top: 1.5rem;
+	}
+
+	&__text {
+		font-size: 1.5rem;
+		line-height: 2rem;
+		font-weight: 300;
+		margin-top: 1rem;
+
+		white-space: pre-line;
+	}
+	&__price {
+		&-list {
+			font-size: 1.25rem;
+			line-height: 1.75rem;
+			font-weight: 300;
+
+			margin-top: 0.75rem;
+
+			&-item {
+				list-style-type: disc;
+				list-style-position: inside;
+			}
+		}
+	}
+}

@@ -1,0 +1,261 @@
+.about {
+	padding-bottom: 7.5rem;
+
+	&__lowhead {
+		font-size: 2.25rem;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin: 1rem 0;
+
+		@media (max-width: 1024px) {
+			font-size: 1.5rem;
+		}
+	}
+
+	&__banner {
+		width: 100%;
+
+		@media (max-width: 1024px) {
+			display: flex;
+			flex-direction: column;
+		}
+		&-head {
+			font-size: 4rem;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 140%;
+			margin-bottom: 1.5rem;
+
+			@media (max-width: 1024px) {
+				font-size: 1.875rem;
+			}
+		}
+
+		&-text {
+			font-size: 1.5rem;
+			font-style: normal;
+			font-weight: 300;
+			line-height: 140%;
+			max-width: 75.625rem;
+			margin-bottom: 1em;
+
+			@media (max-width: 1024px) {
+				font-size: 1.25rem;
+			}
+		}
+
+		&-text-cont {
+			@media (max-width: 1024px) {
+				display: flex;
+				flex-direction: column-reverse;
+			}
+		}
+
+		&-img {
+			width: 100%;
+			margin-bottom: 1.25rem;
+
+			@media (max-width: 1024px) {
+				aspect-ratio: 16/9;
+				object-fit: cover;
+			}
+		}
+	}
+
+	&__card {
+		margin-bottom: 4rem;
+
+		@media (max-width: 1024px) {
+			margin-bottom: 2rem;
+		}
+		&-head {
+			font-size: 2rem;
+			font-style: normal;
+			font-weight: 600;
+			line-height: normal;
+			text-wrap: balance;
+			margin-bottom: 3rem;
+
+			@media (max-width: 1024px) {
+				font-size: 1.5rem;
+				margin-bottom: 1rem;
+			}
+		}
+	}
+
+	&__item {
+		display: flex;
+		gap: 2.5rem;
+		@media (max-width: 768px) {
+			display: none;
+		}
+		&-img {
+			display: flex;
+			align-items: center;
+			&-desc {
+				margin-left: 0;
+				margin-right: auto;
+				margin-top: 1.25rem;
+			}
+			img {
+				width: 12.5rem;
+				aspect-ratio: 1/1;
+				border-radius: 100%;
+
+				@media (max-width: 1024px) {
+					width: 7.5rem;
+				}
+			}
+		}
+
+		&-description {
+			display: flex;
+			flex-direction: column;
+			margin-left: 1.25rem;
+
+			@media (max-width: 1024px) {
+				margin-left: 0;
+			}
+		}
+
+		&-name {
+			font-size: 2rem;
+			font-style: normal;
+			font-weight: 700;
+			line-height: normal;
+			margin-top: 0;
+
+			@media (max-width: 1024px) {
+				font-size: 1.25rem;
+			}
+		}
+
+		&-job {
+			color: #65a30d;
+			font-size: 1.25rem;
+			font-style: normal;
+			font-weight: 400;
+			line-height: normal;
+			margin-top: 0;
+			margin-bottom: auto;
+
+			@media (max-width: 1024px) {
+				font-size: 1rem;
+				font-weight: 400;
+			}
+		}
+
+		&-text {
+			font-size: 1.5rem;
+			font-style: normal;
+			font-weight: 400;
+			line-height: normal;
+			max-width: 55.5rem;
+			margin-top: auto;
+			margin-bottom: 0;
+
+			@media (max-width: 1024px) {
+				font-size: 1.25rem;
+			}
+		}
+	}
+	&__item-mobile {
+		display: none;
+		@media (max-width: 768px) {
+			display: flex;
+			gap: 1rem;
+			flex-direction: column;
+			&-img {
+				display: flex;
+				gap: 1.25rem;
+				align-items: center;
+				img {
+					width: 7.2rem;
+					height: 7.2rem;
+					border-radius: 100%;
+				}
+			}
+
+			&-description {
+				display: flex;
+				flex-direction: column;
+				margin-left: 0;
+			}
+
+			&-name {
+				font-size: 1.25rem;
+				font-style: normal;
+				font-weight: 700;
+				line-height: normal;
+				margin-top: 0;
+			}
+
+			&-job {
+				color: #65a30d;
+				font-size: 1rem;
+				font-style: normal;
+				font-weight: 400;
+				line-height: normal;
+				margin-top: 0;
+				margin-bottom: auto;
+			}
+
+			&-text {
+				font-size: 1.25rem;
+				font-style: normal;
+				font-weight: 400;
+				line-height: normal;
+				max-width: 55.5rem;
+			}
+		}
+	}
+
+	&__advantages {
+		&-head {
+			font-size: 2rem;
+			font-style: normal;
+			font-weight: 600;
+			line-height: normal;
+			margin-bottom: 2.5rem;
+
+			@media (max-width: 1024px) {
+				font-size: 1.25rem;
+				margin-bottom: 1rem;
+			}
+		}
+		&-list {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(3, 1fr);
+			grid-column-gap: 2.5rem;
+			grid-row-gap: 2.5rem;
+
+			@media (max-width: 1024px) {
+				grid-template-columns: repeat(1, 1fr);
+				grid-template-rows: auto;
+			}
+		}
+
+		&-item {
+			display: flex;
+			align-items: flex-start;
+		}
+		&-img {
+			margin-right: 1rem;
+			width: 3.75rem;
+			height: 3.75rem;
+		}
+
+		&-text {
+			font-size: 1rem;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 150%;
+
+			@media (max-width: 1024px) {
+				font-size: 1rem;
+			}
+		}
+	}
+}

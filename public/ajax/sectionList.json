@@ -1,0 +1,11 @@
+{
+	"status": "error",
+	"data": null,
+	"errors": [
+		{
+			"message": "Invalid csrf token",
+			"code": "invalid_csrf",
+			"customData": { "csrf": "238a9b58a2d6d721edc916315b536a13" }
+		}
+	]
+}

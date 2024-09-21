@@ -1,0 +1,263 @@
+.footer {
+	width: 100%;
+
+	&-top {
+		background: #f5f5f5;
+
+		&__top {
+			padding: 2rem 0 1.5rem;
+			border-bottom: 0.0625rem solid #d4d4d4;
+		}
+
+		&__nav {
+			display: flex;
+			align-items: center;
+
+			@media (max-width: 1300px) {
+				flex-direction: column;
+			}
+		}
+
+		&__list {
+			margin-right: auto;
+			display: flex;
+			align-items: center;
+			gap: 1.875rem;
+
+			@media (max-width: 1300px) {
+				gap: 1rem;
+			}
+
+			&-link {
+				font-size: 1.25rem;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 120%;
+				position: relative;
+
+				&:hover {
+					color: #000;
+				}
+				&::before {
+					content: '';
+					position: absolute;
+					display: block;
+					width: 100%;
+					height: 0.125rem;
+					bottom: 0;
+					left: 0;
+					background-color: #000;
+					transform: scaleX(0);
+					transition: transform 0.3s ease;
+				}
+
+				&:hover::before {
+					transform: scaleX(1);
+					background-color: #000;
+				}
+			}
+		}
+
+		&__soc {
+			margin-left: auto;
+			display: flex;
+			align-items: center;
+			gap: 1.25rem;
+			@media (max-width: 1300px) {
+				display: none;
+			}
+			&-link {
+				img {
+					transition: transform 0.15s ease-in-out;
+					width: 3rem;
+					height: 3rem;
+					&:hover {
+						transform: scale(1.15);
+					}
+				}
+			}
+
+			&-item {
+				&:first-child {
+					img {
+						&:hover {
+							filter: drop-shadow(0 0 0.1875rem #29b6f6);
+						}
+					}
+				}
+
+				&:nth-child(2) {
+					img {
+						&:hover {
+							filter: drop-shadow(0 0 0.1875rem #40c351);
+						}
+					}
+				}
+				&:last-child {
+					img {
+						&:hover {
+							filter: drop-shadow(0 0 0.1875rem #1976d2);
+						}
+					}
+				}
+			}
+		}
+
+		&__bot {
+			padding: 1.25rem 0px 2.5rem;
+			&-nav {
+				display: flex;
+				align-items: center;
+			}
+
+			&-list {
+				display: flex;
+				margin-right: auto;
+				gap: 1.875rem;
+
+				&-link {
+					color: #a3a3a3;
+					font-size: 1.25rem;
+					font-style: normal;
+					font-weight: 500;
+					line-height: normal;
+					position: relative;
+
+					&:hover {
+						color: #000;
+					}
+					&::before {
+						content: '';
+						position: absolute;
+						display: block;
+						width: 100%;
+						height: 0.125rem;
+						bottom: 0;
+						left: 0;
+						background-color: #a3a3a3;
+						transform: scaleX(0);
+						transition: transform 0.3s ease;
+					}
+
+					&:hover::before {
+						transform: scaleX(1);
+						background-color: #000;
+					}
+				}
+			}
+
+			&-phones {
+				display: flex;
+				margin-left: auto;
+				gap: 4.2rem;
+				@media (max-width: 1300px) {
+					display: none;
+				}
+				&-item {
+					display: flex;
+					flex-direction: column;
+					gap: 0.3rem;
+				}
+
+				&-link {
+					font-size: 1.25rem;
+					font-style: normal;
+					font-weight: 600;
+					line-height: 120%;
+					position: relative;
+
+					&::before {
+						content: '';
+						position: absolute;
+						display: block;
+						width: 100%;
+						height: 0.125rem;
+						bottom: 0;
+						left: 0;
+						background-color: #000;
+						transform: scaleX(0);
+						transition: transform 0.3s ease;
+					}
+
+					&:hover::before {
+						transform: scaleX(1);
+					}
+				}
+
+				&-desc {
+					color: #a3a3a3;
+					font-size: 0.875rem;
+					font-style: normal;
+					font-weight: 500;
+					line-height: 120%;
+				}
+			}
+		}
+	}
+
+	&-bot {
+		background: #262626;
+		padding: 2rem 0px 4rem;
+
+		&__container {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+		}
+
+		&__copy {
+			display: flex;
+			gap: 2.5rem;
+			@media (max-width: 1300px) {
+				flex-direction: column;
+			}
+			&-list {
+				display: flex;
+				flex-direction: column;
+				gap: 0.3125rem;
+				&-link {
+					color: #a3a3a3;
+					font-size: 1.25rem;
+					font-style: normal;
+					font-weight: 500;
+					line-height: normal;
+					transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
+
+					@media (max-width: 1300px) {
+						font-size: 1rem;
+					}
+					&:hover {
+						color: #fff;
+						text-shadow: 0 0 0.0625rem #fff;
+					}
+				}
+			}
+			&-block {
+				display: flex;
+				flex-direction: column;
+				gap: 0.3125rem;
+			}
+			&-text {
+				color: #a3a3a3;
+				font-size: 1rem;
+				font-style: normal;
+				font-weight: 500;
+				line-height: normal;
+			}
+		}
+		&__payment {
+			margin-left: auto;
+			margin-right: 0;
+			display: flex;
+			gap: 1rem;
+			@media (max-width: 400px) {
+				flex-wrap: wrap;
+			}
+			&-img {
+				display: block;
+				object-fit: cover;
+				height: 1.225rem;
+			}
+		}
+	}
+}

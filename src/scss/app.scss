@@ -1,0 +1,144 @@
+@import './variables';
+@import './config/base';
+@import './config/normalize';
+@import './layout/header';
+@import './layout/footer';
+@import './pages/all';
+
+.card__top {
+	position: relative;
+	width: 18rem;
+	height: 21rem;
+	transition: box-shadow 0.15s ease-in-out;
+	&:hover {
+		box-shadow: 0 0 1.25rem 0.3125rem #bf98a165;
+	}
+	@media (max-width: 1300px) {
+		width: 100%;
+		margin: 0;
+		height: 23rem;
+	}
+	@media (max-width: 1000px) {
+		width: 100%;
+		margin: 0;
+		height: 23rem;
+	}
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin: 0;
+		height: 27rem;
+	}
+
+	@media (max-width: 400px) {
+		aspect-ratio: unset;
+		width: 100%;
+	}
+}
+.swiperCard {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	aspect-ratio: 7/8;
+
+	@media (max-width: 1000px) {
+		aspect-ratio: 7/11;
+		width: 100%;
+	}
+	@media (max-width: 500px) {
+		max-width: 500px;
+		aspect-ratio: 7/9;
+		width: 100%;
+	}
+
+	@media (max-width: 375px) {
+		max-width: 375px;
+		aspect-ratio: 7/9;
+		width: 100%;
+	}
+	@media (max-width: 320px) {
+		max-width: 320px;
+		aspect-ratio: 7/11;
+		width: 100%;
+	}
+}
+
+.card__size {
+	position: absolute;
+	display: flex;
+	gap: 0.3125rem;
+	align-items: center;
+	margin: 0 auto;
+	top: 0.625rem;
+	left: 45%;
+	transform: translateX(-50%);
+	z-index: 100;
+	transition: transform 0.2s ease-in-out;
+
+	img {
+		width: 0.9rem;
+		height: 0.9rem;
+	}
+}
+
+.card__height,
+.card__width {
+	color: #fff;
+	font-size: 0.8rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 0.7rem;
+}
+.card__img-wrap {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.card__img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	// aspect-ratio: 7/8;
+}
+
+.card__bot {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.875rem;
+}
+
+.card__desc {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3125rem;
+}
+.card__name {
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 1.25rem;
+}
+
+.card__amount {
+	font-size: 0.875rem;
+	font-style: normal;
+	font-weight: 300;
+	line-height: normal;
+}
+
+.card__buy {
+	display: flex;
+	align-items: center;
+	gap: 0.94rem;
+	position: relative;
+}
+
+.card__price {
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 1.125rem;
+}

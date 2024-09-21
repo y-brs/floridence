@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Флориденс</title>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script>
+			window.linksHeader = [
+				{ name: 'Доставка', href: 'https://floridence.com/delivery/' },
+				{ name: 'Оплата', href: 'https://floridence.com/payment/' },
+				{ name: 'О нас', href: 'https://floridence.com/company/' },
+				{ name: 'Контакты', href: 'https://floridence.com/contacts/' },
+			];
+
+			window.headerPhone = { number: '8 (863) 270-08-08', href: '+78632700808' };
+
+			window.headerDropdown = [
+				{ number: '8 (918) 599-99-70', href: '+79185999970' },
+				{ number: '8 (918) 599-99-70', href: '+79185999970' },
+			];
+
+			window.banner = {
+				imgSrc: '/assets/img/banner.jpg',
+				head: 'Для любимой мамы',
+				text: '5% на предзаказ по промокоду',
+				promocode: 'МАМА2023',
+				href: 'https://flowwow.com/shop/floridens',
+			};
+			window.sectionsHeads = {
+				promo: 'Популярные букеты',
+			};
+
+			window.footerTopLinks = [
+				{ name: 'О нас', href: 'https://floridence.com/company/' },
+				{ name: 'Контакты', href: 'https://floridence.com/contacts/' },
+				{ name: 'Услуги', href: '/' },
+			];
+
+			window.footerTopSocial = [
+				{ name: 'telegram', imgUrl: 'assets/icons/tg.svg', href: '/' },
+				{ name: 'WhatsApp', imgUrl: 'assets/icons/wu.svg', href: '/' },
+				{ name: 'vk', imgUrl: 'assets/icons/vk.svg', href: '/' },
+			];
+
+			window.footerBottomLinks = [
+				{ name: 'Доставка', href: 'https://floridence.com/delivery/' },
+				{ name: 'Оплата', href: 'https://floridence.com/payment/' },
+			];
+
+			window.footerBottomPhones = [
+				{ number: '8 (863) 270-08-08', href: '+78632700808', place: 'В Ростове-на-Дону' },
+				{ number: '8 (800) 200-80-27', href: '+78002008027', place: 'Бесплатно по России' },
+			];
+
+			window.footerCopyLinks = [
+				{ name: 'Договор публичной оферты', href: '#' },
+				{ name: 'Политика конфиденциальности', href: '#' },
+			];
+
+			window.footerCopyText = {
+				address: 'Ростов-на-Дону, Ворошиловский проспект, 34/125',
+				copyright: '© 2011–2024, Цветочная студия «Флориденс»',
+			};
+
+			window.footerPayment = [
+				{ imgUrl: 'assets/icons/mastercard.png', alt: '' },
+				{ imgUrl: 'assets/icons/visa.png', alt: '' },
+				{ imgUrl: 'assets/icons/sber.png', alt: '' },
+				{ imgUrl: 'assets/icons/alfa.png', alt: '' },
+				{ imgUrl: 'assets/icons/mir.png', alt: '' },
+				{ imgUrl: 'assets/icons/tinkoff.png', alt: '' },
+			];
+		</script>
+		<script type="module" src="/src/main.jsx"></script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+[
+	{
+		"id": 0,
+		"imageUrl": "assets/img/flower1.jpg",
+		"name": "Букет роза и тюльпан",
+		"price": 7400
+	},
+	{
+		"id": 1,
+		"imageUrl": "assets/img/flower1.jpg",
+		"name": "Букет Артемон",
+		"price": 4500
+	},
+	{
+		"id": 2,
+		"imageUrl": "assets/img/flower1.jpg",
+		"name": "Букет Микс весенних цветов",
+		"price": 5500
+	},
+	{
+		"id": 3,
+		"imageUrl": "assets/img/flower1.jpg",
+		"name": "Букет Культ",
+		"price": 3900
+	},
+	{
+		"id": 4,
+		"imageUrl": "assets/img/flower1.jpg",
+		"name": "Букет Тыковка",
+		"price": 3900
+	},
+	{
+		"id": 5,
+		"imageUrl": "assets/img/flower1.jpg",
+		"name": "Идеальное трио",
+		"price": 8600
+	},
+	{
+		"id": 6,
+		"imageUrl": "assets/img/flower1.jpg",
+		"name": "Идеальное трио",
+		"price": 5500
+	},
+	{
+		"id": 7,
+		"imageUrl": "assets/img/flower1.jpg",
+		"name": "Идеальное трио",
+		"price": 7500
+	}
+]
