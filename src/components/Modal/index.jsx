@@ -76,7 +76,7 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                     item.MORE_PHOTO_RESIZE_IMAGE.length > 0 &&
                     morePhoto.map((photo, index) => (
                       <SwiperSlide key={item.id}>
-                        1<img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC_WEBP || photo.PIC_WEBP}`} alt={name} />
+                        <img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC_WEBP || photo.PIC_WEBP}`} alt={name} />
                       </SwiperSlide>
                     ))
                 )
@@ -93,13 +93,13 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
               {video && (
                 <SwiperSlide>
                   <video className={Style.img} muted loop controls={false} autoPlay={true} playsInline={true}>
-                    3<source src={`https://floridence.com${video}`} type='video/mp4' />
+                    <source src={`https://floridence.com${video}`} type='video/mp4' />
                   </video>
                 </SwiperSlide>
               )}
               {gif && (
                 <SwiperSlide>
-                  4<img className={Style.img} src={`https://floridence.com${gif}`} alt={name} />
+                  <img className={Style.img} src={`https://floridence.com${gif}`} alt={name} />
                 </SwiperSlide>
               )}
             </Swiper>
