@@ -50,6 +50,7 @@ function Promo({ isLoading }) {
   ));
 
   const modalItems = promoItemsRedux.filter(obj => obj.id == selectedItemId).map(obj => <Modal key={obj.id} showModal={showModal} closeModal={closeModal} {...obj} />);
+  console.log(promoItemsRedux);
 
   const promoSkeleton = [...new Array(8)].map((_, index) => (
     <SwiperSlide key={index}>

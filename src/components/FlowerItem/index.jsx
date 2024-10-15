@@ -24,7 +24,7 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
   const [offersData, setOffersData] = useState([]);
   const [values, setValues] = useState([]);
 
-  const [modalHash, setModalHash] = useState(null);
+  const [modalHash, setModalHash] = useState();
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const openModal = useCallback(hash => {

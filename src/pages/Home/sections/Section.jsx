@@ -5,16 +5,12 @@ import FlowerItem from '../../../components/FlowerItem';
 import Skeleton from '../../../components/skeleton/Skeleton';
 
 function Section({ id, name, isLoading, showMore, code }) {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef();
   const itemsHome = useSelector(state => state.item.items);
 
-  const monoItems = itemsHome
-    .filter((obj, index) => obj.sectionId == id)
-    // !! Убрал сортировку тк прыгали карточки товаров при просмотре страницы
-    // .sort((a, b) => a.sort - b.sort) // сортировка по ключу sort
-    .map((obj, index) => <FlowerItem key={obj.id} index={index} {...obj} isLoading={isLoading} />);
+  const monoItems = itemsHome.filter((obj, index) => obj.sectionId == id).map((obj, index) => <FlowerItem key={obj.id} index={index} isLoading={isLoading} {...obj} />);
 
-  const skeletons = [...new Array(50)].map((_, index) => <Skeleton key={index} />);
+  const skeletons = [...new Array(20)].map((_, index) => <Skeleton key={index} />);
 
   useEffect(() => {
     const options = {

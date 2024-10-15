@@ -7,8 +7,8 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import widthSvg from '/assets/icons/arrow-hor.svg';
-import heightSvg from '/assets/icons/arrow.svg';
+import ImageWidth from '/assets/icons/arrow-hor.svg';
+import ImageHeight from '/assets/icons/arrow.svg';
 
 import ModalPriceBtn from '../ModalPriceBtn';
 import Style from './Modal.module.scss';
@@ -16,7 +16,7 @@ import Style from './Modal.module.scss';
 function Modal({ showModal, closeModal, activeItemId, name, description, properties, offers, treeProps, id, price, morePhoto, defaultPicture, gif, video }) {
   const isCartOpen = useSelector(state => state.cart.isCartOpen);
   const [valuesData, setValuesData] = useState({});
-  const [activeAmount, setActiveAmount] = useState(null);
+  const [activeAmount, setActiveAmount] = useState();
 
   treeProps &&
     useEffect(() => {
@@ -76,7 +76,7 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                     item.MORE_PHOTO_RESIZE_IMAGE.length > 0 &&
                     morePhoto.map((photo, index) => (
                       <SwiperSlide key={item.id}>
-                        <img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC_WEBP || photo.PIC_WEBP}`} alt={name} />
+                        1<img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC_WEBP || photo.PIC_WEBP}`} alt={name} />
                       </SwiperSlide>
                     ))
                 )
@@ -89,17 +89,19 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
               ) : (
                 <ModalSkeleton />
               )}
-              {video !== null ? (
+
+              {video && (
                 <SwiperSlide>
                   <video className={Style.img} muted loop controls={false} autoPlay={true} playsInline={true}>
-                    <source src={`https://floridence.com${video}`} type='video/mp4' />
+                    3<source src={`https://floridence.com${video}`} type='video/mp4' />
                   </video>
                 </SwiperSlide>
-              ) : gif !== null ? (
+              )}
+              {gif && (
                 <SwiperSlide>
-                  <img className={Style.img} src={`https://floridence.com${gif}`} alt={name} />
+                  4<img className={Style.img} src={`https://floridence.com${gif}`} alt={name} />
                 </SwiperSlide>
-              ) : null}
+              )}
             </Swiper>
           </div>
 
@@ -117,13 +119,13 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
             <div className={Style.sizes}>
               {properties?.HEIGHT?.VALUE && (
                 <div className={Style.height}>
-                  <img src={heightSvg} alt='' />
+                  <img src={ImageHeight} alt='' />
                   <span>{properties.HEIGHT.VALUE}</span>
                 </div>
               )}
               {properties?.WIDTH?.VALUE && (
                 <div className={Style.width}>
-                  <img src={widthSvg} alt='' />
+                  <img src={ImageWidth} alt='' />
                   <span>{properties.WIDTH.VALUE}</span>
                 </div>
               )}
