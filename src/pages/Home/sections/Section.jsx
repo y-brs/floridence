@@ -12,15 +12,7 @@ function Section({ id, name, isLoading, showMore, code }) {
     .filter((obj, index) => obj.sectionId == id)
     // !! Убрал сортировку тк прыгали карточки товаров при просмотре страницы
     // .sort((a, b) => a.sort - b.sort) // сортировка по ключу sort
-    .map((obj, index) => (
-      <FlowerItem
-        // flowerSection={flowerSection}
-        key={obj.id}
-        index={index}
-        {...obj}
-        isLoading={isLoading}
-      />
-    ));
+    .map((obj, index) => <FlowerItem key={obj.id} index={index} {...obj} isLoading={isLoading} />);
 
   const skeletons = [...new Array(50)].map((_, index) => <Skeleton key={index} />);
 

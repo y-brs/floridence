@@ -9,8 +9,8 @@ import { Pagination } from 'swiper/modules';
 
 import Modal from '../Modal';
 
-import arrowHorSvg from '../../../public/assets/icons/arrow-hor.svg';
-import arrowVertSvg from '../../../public/assets/icons/arrow.svg';
+import arrowHorSvg from '/assets/icons/arrow-hor.svg';
+import arrowVertSvg from '/assets/icons/arrow.svg';
 
 import FlowerItemButton from '../FlowerItemButton';
 
