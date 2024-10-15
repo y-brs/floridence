@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import axios from 'axios';
@@ -6,32 +6,33 @@ import { useDispatch } from 'react-redux';
 
 import supportsWebP from 'supports-webp';
 
-import { addBasketCount, addBasketSum, addItem } from './redux/slices/cartSlice';
+import { addBasketCount, addBasketSum } from './redux/slices/cartSlice';
 import { addCategory } from './redux/slices/categorySlice';
 import { addHomeItem, addPromoItem } from './redux/slices/itemSlice';
 
-import Header from './components/Header';
-import Home from './pages/Home/Home';
-import './scss/app.scss';
-
 import Cart from './components/Cart';
 import Footer from './components/Footer';
+import Header from './components/Header';
 import MobileMenu from './components/MobileMenu';
+import Home from './pages/Home/Home';
+
+import './scss/app.scss';
 
 function App() {
   const dispatch = useDispatch();
-  const isWebpUse = React.useRef(false);
+  const isWebpUse = useRef(false);
   const [cartItems, setCartItems] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
-  const currentPage = React.useRef(1);
+  const currentPage = useRef(1);
   const [pageCount, setPageCount] = useState(6);
 
   async function fetchMainData(page) {
     try {
-      const bitrixResponse = await axios.get(`/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlist&page=${page}`);
+      const bitrixResponse = await axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlist&page=${page}`);
 
       setPageCount(bitrixResponse.data.pagination.pageCount);
+
       if (await supportsWebP) {
         isWebpUse.current = true;
       } else {
@@ -72,46 +73,46 @@ function App() {
       try {
         setIsLoading(true);
         const [categoryResponse, hitResponse, cartResponse] = await Promise.all([
-          axios.get(`/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=sectionlist`),
-          axios.get(`/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit`),
-          axios.get(`/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount`),
+          axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=sectionlist`),
+          axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit`),
+          axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount`),
         ]);
-        if (typeof BX.Sale === 'object' && typeof BX.Sale.BasketComponent === 'object') {
-          const data = new FormData();
-          data.append('via_ajax', 'Y');
-          data.append('preloader_remove', 'Y');
-          data.append('fullRecalculation', 'Y');
-          data.append('basketAction', 'recalculateAjax');
-          data.append('site_id', BX.Sale.BasketComponent.siteId);
-          data.append('sessid', BX.bitrix_sessid());
-          data.append('template', BX.Sale.BasketComponent.template);
-          data.append('signedParamsString', BX.Sale.BasketComponent.signedParamsString);
+        // if (typeof BX.Sale === 'object' && typeof BX.Sale.BasketComponent === 'object') {
+        //   const data = new FormData();
+        //   data.append('via_ajax', 'Y');
+        //   data.append('preloader_remove', 'Y');
+        //   data.append('fullRecalculation', 'Y');
+        //   data.append('basketAction', 'recalculateAjax');
+        //   data.append('site_id', BX.Sale.BasketComponent.siteId);
+        //   data.append('sessid', BX.bitrix_sessid());
+        //   data.append('template', BX.Sale.BasketComponent.template);
+        //   data.append('signedParamsString', BX.Sale.BasketComponent.signedParamsString);
 
-          try {
-            const response = await axios.post('/bitrix/components/bitrix/sale.basket.basket/ajax.php', data, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
-            });
+        //   try {
+        //     const response = await axios.post('https://floridence.com/bitrix/components/bitrix/sale.basket.basket/ajax.php', data, {
+        //       headers: {
+        //         'Content-Type': 'multipart/form-data',
+        //       },
+        //     });
 
-            response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA.map((item, index) => {
-              const itemData = {
-                id: Number(item.PRODUCT_ID),
-                cartId: item.ID,
-                name: item.NAME,
-                count: item.QUANTITY,
-                price: item.FULL_PRICE * item.QUANTITY,
-                oneItemPrice: item.FULL_PRICE,
-                imageUrl: item.IMAGE_URL,
-              };
+        //     response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA.map((item, index) => {
+        //       const itemData = {
+        //         id: Number(item.PRODUCT_ID),
+        //         cartId: item.ID,
+        //         name: item.NAME,
+        //         count: item.QUANTITY,
+        //         price: item.FULL_PRICE * item.QUANTITY,
+        //         oneItemPrice: item.FULL_PRICE,
+        //         imageUrl: item.IMAGE_URL,
+        //       };
 
-              // console.log('first render', response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA);
-              dispatch(addItem(itemData, dispatch));
-            });
-          } catch (error) {
-            console.error(error);
-          }
-        }
+        //       // console.log('first render', response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA);
+        //       dispatch(addItem(itemData, dispatch));
+        //     });
+        //   } catch (error) {
+        //     console.error(error);
+        //   }
+        // }
         if (await supportsWebP) {
           isWebpUse.current = true;
         } else {
