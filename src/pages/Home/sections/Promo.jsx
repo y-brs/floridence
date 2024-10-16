@@ -61,7 +61,7 @@ function Promo({ isLoading }) {
   // Обновляйте хэш модального окна при изменении
   useEffect(() => {
     const handleHashChange = () => {
-      const urlHash = window.location.hash.substr(1); // Убираем символ #
+      const urlHash = window.location.hash.substring(1); // Убираем символ #
       if (urlHash === selectedItemId + '1') {
         openModal(selectedItemId, urlHash + '1');
       }

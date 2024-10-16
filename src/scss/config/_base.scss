@@ -89,6 +89,12 @@ section {
   background-color: #fcd34d !important;
 }
 
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #ffffff !important;
+  font-size: 2rem !important;
+}
+
 img {
   position: relative;
   display: block;
