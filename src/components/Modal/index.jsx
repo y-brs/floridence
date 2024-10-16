@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ModalPriceBtn from '../ModalPriceBtn';
@@ -19,33 +20,38 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
   const [valuesData, setValuesData] = useState({});
   const [activeAmount, setActiveAmount] = useState(null);
 
+  const backdrop = {
+    hidden: {
+      opacity: 0,
+      transition: {
+        ease: 'easeInOut',
+        duration: 0.2,
+      },
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        ease: 'easeInOut',
+        duration: 0.2,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        ease: 'easeInOut',
+        duration: 0.2,
+      },
+    },
+  };
+
   treeProps &&
     useEffect(() => {
       treeProps?.length > 0 && setValuesData(treeProps[0].VALUES);
       treeProps?.length > 0 && setActiveAmount(activeItemId || Object.values(treeProps[0]?.VALUES).slice(1)[0].ID);
     }, [treeProps]);
 
-  useEffect(() => {
-    const close = e => {
-      if (e.keyCode === 27) {
-        closeModal();
-      }
-    };
-    if (showModal || isCartOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    window.addEventListener('keydown', close);
-    return () => window.removeEventListener('keydown', close);
-  }, [showModal]);
-
   return (
-    <div
-      className={showModal ? Style.overlay_open : Style.overlay}
-      onClick={() => {
-        closeModal();
-      }}>
+    <motion.div onClick={closeModal} variants={backdrop} initial='hidden' animate='visible' exit='exit' className={showModal ? Style.overlay_open : Style.overlay}>
       <div
         className={Style.modal}
         onClick={e => {
@@ -162,7 +168,7 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

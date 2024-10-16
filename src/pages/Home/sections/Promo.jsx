@@ -22,7 +22,7 @@ function Promo({ isLoading }) {
   const openModal = useCallback(id => {
     setSelectedItemId(id);
     setShowModal(true);
-    setScrollPosition(window.pageY);
+    setScrollPosition(window.scrollY);
   }, []);
 
   const closeModal = useCallback(() => {

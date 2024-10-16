@@ -1,18 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import LazyLoad from 'react-lazy-load';
 import { useSelector } from 'react-redux';
-import { showHide } from '../../utils/utils';
-import FlowerItemButton from '../FlowerItemButton';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { showHide } from '../../utils/utils';
+
+import FlowerItemButton from '../FlowerItemButton';
 import Modal from '../Modal';
 
 import ImageHorizontal from '/assets/icons/arrow-hor.svg';
 import ImageVertical from '/assets/icons/arrow.svg';
+
+import { AnimatePresence } from 'framer-motion';
 
 const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, price, name, id, properties, description, gif, video }) => {
   const cartItems = useSelector(state => state.cart.items);
@@ -30,7 +33,7 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
   const openModal = useCallback(hash => {
     setShowModal(true);
     setModalHash(hash);
-    setScrollPosition(window.pageYOffset);
+    setScrollPosition(window.scrollY);
   }, []);
 
   const closeModal = useCallback(() => {
@@ -79,23 +82,25 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
 
   return (
     <div className='card__with-big'>
-      {showModal && (
-        <Modal
-          id={id}
-          price={price}
-          showModal={showModal}
-          closeModal={closeModal}
-          name={name}
-          description={description}
-          properties={properties}
-          offers={offers}
-          treeProps={treeProps}
-          morePhoto={morePhoto}
-          defaultPicture={defaultPicture}
-          gif={gif}
-          video={video}
-        />
-      )}
+      <AnimatePresence>
+        {showModal && (
+          <Modal
+            id={id}
+            price={price}
+            showModal={showModal}
+            closeModal={closeModal}
+            name={name}
+            description={description}
+            properties={properties}
+            offers={offers}
+            treeProps={treeProps}
+            morePhoto={morePhoto}
+            defaultPicture={defaultPicture}
+            gif={gif}
+            video={video}
+          />
+        )}
+      </AnimatePresence>
       <div className='card__top'>
         <div className='card__size'>
           {properties?.HEIGHT?.VALUE && (

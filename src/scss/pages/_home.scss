@@ -220,7 +220,7 @@
 .mono {
   .card__with-big,
   .card__without-big {
-    cursor: pointer;
+    // cursor: pointer;
   }
   .items:has(.card__with-big:nth-child(10n)) > .card__with-big:nth-child(10n - 1),
   .card__with-big:nth-child(10n) {

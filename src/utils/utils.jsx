@@ -7,8 +7,9 @@ export const showHide = showModal => {
   if (showModal) {
     document.body.style.overflow = 'hidden';
   } else {
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = '';
   }
   window.addEventListener('keydown', close);
-  return () => window.removeEventListener('keydown', close);
+
+  return window.removeEventListener('keydown', close);
 };

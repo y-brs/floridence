@@ -25,7 +25,7 @@ function Promo({ isLoading }) {
     setSelectedItemId(itemId);
     setShowModal(true);
     setModalHash(hash);
-    setScrollPosition(window.pageYOffset);
+    setScrollPosition(window.scrollY);
   }, []);
 
   const closeModal = useCallback(() => {
