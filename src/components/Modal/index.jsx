@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import ModalPriceBtn from '../ModalPriceBtn';
 import ModalSkeleton from '../skeleton/ModalSkeleton';
 
@@ -16,7 +15,7 @@ import IconHeight from '/assets/icons/arrow.svg';
 import Style from './Modal.module.scss';
 
 function Modal({ showModal, closeModal, activeItemId, name, description, properties, offers, treeProps, id, price, morePhoto, defaultPicture, gif, video }) {
-  const isCartOpen = useSelector(state => state.cart.isCartOpen);
+  // const isCartOpen = useSelector(state => state.cart.isCartOpen);
   const [valuesData, setValuesData] = useState({});
   const [activeAmount, setActiveAmount] = useState(null);
 
@@ -51,7 +50,7 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
     }, [treeProps]);
 
   return (
-    <motion.div onClick={closeModal} variants={backdrop} initial='hidden' animate='visible' exit='exit' className={showModal ? Style.overlay_open : Style.overlay}>
+    <motion.div onClick={closeModal} variants={backdrop} initial='hidden' animate='visible' exit='exit' className={`${Style.overlay} modal-overlay`}>
       <div
         className={Style.modal}
         onClick={e => {

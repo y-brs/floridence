@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import Modal from '../../../components/Modal';
 import PromoItem from '../../../components/PromoItem';
 import PromoSkeleton from '../../../components/skeleton/PromoSkeleton';
-import { showHide } from '../../../utils/utils';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -49,7 +48,37 @@ function Promo({ isLoading }) {
   ));
 
   useEffect(() => {
-    showHide(showModal);
+    const handleKeyDown = e => {
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        closeModal();
+      }
+    };
+
+    const handleModalStyles = () => {
+      const lockedModal = document.querySelector('.modal-overlay');
+      const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
+
+      if (showModal) {
+        document.documentElement.style.overflow = 'hidden';
+        lockedContainer.style.paddingRight = lockedPaddingValue;
+        document.body.style.paddingRight = lockedPaddingValue;
+      } else {
+        setTimeout(() => {
+          document.documentElement.style.overflow = '';
+          document.body.style.paddingRight = '';
+          lockedContainer.style.paddingRight = '';
+        }, 200);
+      }
+    };
+
+    const lockedContainer = document.querySelector('.header');
+
+    handleModalStyles();
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [showModal]);
 
   return (
@@ -59,29 +88,22 @@ function Promo({ isLoading }) {
       <h2 className='promo__head'>{sectionHead.promo}</h2>
 
       <Swiper
+        slidesPerView={1}
+        spaceBetween={10}
         breakpoints={{
-          320: {
-            width: 320,
-            slidesPerView: 1.1,
-          },
-          425: {
-            width: 425,
-            slidesPerView: 1.5,
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
           },
           768: {
-            width: 768,
-            slidesPerView: 2.5,
+            slidesPerView: 3,
+            spaceBetween: 20,
           },
           1024: {
-            width: 1024,
-            slidesPerView: 3.5,
-          },
-          1300: {
-            width: 1300,
             slidesPerView: 4,
+            spaceBetween: 20,
           },
         }}
-        spaceBetween={20}
         pagination={{ clickable: true }}
         mousewheel={true}
         direction={'horizontal'}

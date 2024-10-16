@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeCart } from '../../redux/slices/cartSlice';
 
-import { showHide } from '../../utils/utils';
 import CartItem from '../CartItem';
 
 import Style from './Cart.module.scss';
@@ -18,17 +17,41 @@ function Cart({ cartItems }) {
   const itemsStorage = cartItemsStorage?.map(obj => <CartItem key={obj.id} {...obj} />);
 
   useEffect(() => {
-    showHide(isCartOpen);
+    const handleKeyDown = e => {
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        dispatch(closeCart());
+      }
+    };
 
-    // if (isCartOpen) {
-    //   document.body.style.overflow = 'hidden';
-    // } else {
-    //   document.body.style.overflow = 'unset';
-    // }
+    const handleModalStyles = () => {
+      const lockedModal = document.querySelector('.modal-overlay');
+      const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
+
+      if (isCartOpen) {
+        document.documentElement.style.overflow = 'hidden';
+        lockedContainer.style.paddingRight = lockedPaddingValue;
+        document.body.style.paddingRight = lockedPaddingValue;
+      } else {
+        setTimeout(() => {
+          document.documentElement.style.overflow = '';
+          document.body.style.paddingRight = '';
+          lockedContainer.style.paddingRight = '';
+        }, 200);
+      }
+    };
+
+    const lockedContainer = document.querySelector('.header');
+
+    handleModalStyles();
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [isCartOpen]);
 
   return (
-    <div className={isCartOpen ? Style.overlay : Style.overlay_closed} onClick={() => dispatch(closeCart())}>
+    <div className={`${isCartOpen ? Style.overlay : Style.overlay_closed} modal-overlay`} onClick={() => dispatch(closeCart())}>
       <div
         className={Style.cart}
         onClick={e => {

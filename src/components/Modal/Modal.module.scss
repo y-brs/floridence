@@ -4,25 +4,14 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
   z-index: 9000;
-  overflow: hidden;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-.overlay_open {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  display: flex;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 9000;
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+  // overflow: hidden;
+  // visibility: hidden;
+  // opacity: 0;
+  // transition: opacity 0.3s ease-in-out;
 }
 
 .modal {
-  width: 70rem;
+  width: 68.75rem;
   margin: auto;
   background-color: #fff;
   position: relative;

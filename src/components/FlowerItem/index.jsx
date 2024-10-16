@@ -7,8 +7,6 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { showHide } from '../../utils/utils';
-
 import FlowerItemButton from '../FlowerItemButton';
 import Modal from '../Modal';
 
@@ -77,7 +75,37 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
   }, [id]);
 
   useEffect(() => {
-    showHide(showModal);
+    const handleKeyDown = e => {
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        closeModal();
+      }
+    };
+
+    const handleModalStyles = () => {
+      const lockedModal = document.querySelector('.modal-overlay');
+      const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
+
+      if (showModal) {
+        document.documentElement.style.overflow = 'hidden';
+        lockedContainer.style.paddingRight = lockedPaddingValue;
+        document.body.style.paddingRight = lockedPaddingValue;
+      } else {
+        setTimeout(() => {
+          document.documentElement.style.overflow = '';
+          document.body.style.paddingRight = '';
+          lockedContainer.style.paddingRight = '';
+        }, 200);
+      }
+    };
+
+    const lockedContainer = document.querySelector('.header');
+
+    handleModalStyles();
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [showModal]);
 
   return (
