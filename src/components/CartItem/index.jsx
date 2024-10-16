@@ -9,7 +9,7 @@ import Style from './CartItem.module.scss';
 function CartItem({ id, count, imageUrl, name, price, oneItemPrice, amount }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cart.items);
-  const [loading, setIsLoading] = useState(false);
+  const [loading, setIsLoading] = useState();
 
   const countRef = useRef(count);
 

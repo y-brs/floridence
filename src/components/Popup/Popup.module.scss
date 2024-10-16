@@ -1,39 +1,40 @@
 .popup {
-	position: fixed;
-	top: 10%;
-	left: 50%;
-	z-index: 9999;
-	transform: translateX(-50%) scale(1);
-	background: #fff;
-	padding: 1rem;
-	border-radius: 0.5rem;
-	box-shadow: 0 0.3rem 2rem 0.1rem #0000003c;
-	opacity: 1;
-	transition: transform 0.15s ease, opacity 0.1s ease-in-out;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  z-index: 9999;
+  transform: translateX(-50%) scale(1);
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.3rem 2rem 0.1rem #0000003c;
+  opacity: 1;
+  transition: transform 0.15s ease, opacity 0.1s ease-in-out;
 }
 .popup_close {
-	position: fixed;
-	top: 10%;
-	left: 50%;
-	z-index: -1;
-	transform: translateX(-50%) scale(0.5);
-	background: #fff;
-	padding: 1rem;
-	border-radius: 0.5rem;
-	box-shadow: 0 0.3rem 2rem 0.1rem #0000003c;
-	opacity: 0;
-	transition: transform 0.15s ease, opacity 0.1s ease-in-out;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  z-index: -1;
+  transform: translateX(-50%) scale(0.5);
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.3rem 2rem 0.1rem #0000003c;
+  opacity: 0;
+  transition: transform 0.15s ease, opacity 0.1s ease-in-out;
 }
 
 .text {
-	font-size: 1.25rem;
-	display: flex;
-	gap: 0.5rem;
-	align-items: center;
+  font-size: 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: #cccccc;
 }
 .icon {
-	color: #65a30d;
+  color: #65a30d;
 }
 .icon_close {
-	color: #a30d24;
+  color: #a30d24;
 }

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeCart } from '../../redux/slices/cartSlice';
 
+import { showHide } from '../../utils/utils';
 import CartItem from '../CartItem';
 
 import Style from './Cart.module.scss';
@@ -17,12 +18,15 @@ function Cart({ cartItems }) {
   const itemsStorage = cartItemsStorage?.map(obj => <CartItem key={obj.id} {...obj} />);
 
   useEffect(() => {
-    if (isCartOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    showHide(isCartOpen);
+
+    // if (isCartOpen) {
+    //   document.body.style.overflow = 'hidden';
+    // } else {
+    //   document.body.style.overflow = 'unset';
+    // }
   }, [isCartOpen]);
+
   return (
     <div className={isCartOpen ? Style.overlay : Style.overlay_closed} onClick={() => dispatch(closeCart())}>
       <div

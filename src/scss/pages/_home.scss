@@ -218,12 +218,12 @@
   scroll-margin-top: 5rem;
 }
 .mono {
-  .card__with-bigs,
-  .card__without-bigs {
+  .card__with-big,
+  .card__without-big {
     cursor: pointer;
   }
-  .items:has(.card__with-bigs:nth-child(10n)) > .card__with-bigs:nth-child(10n - 1),
-  .card__with-bigs:nth-child(10n) {
+  .items:has(.card__with-big:nth-child(10n)) > .card__with-big:nth-child(10n - 1),
+  .card__with-big:nth-child(10n) {
     grid-column: 2 span / 2 span;
     @media (max-width: 1300px) {
       grid-column: 1 span / 1 span;
