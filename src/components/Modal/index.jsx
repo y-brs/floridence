@@ -68,16 +68,16 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
         </button>
         <div className={Style.container}>
           <div className={Style.left__block}>
-            <Swiper
-              spaceBetween={20}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={true}
-              modules={[Pagination, Navigation]}
-              className='swiperModal'>
-              {Object.values(offers).length > 1 ? (
-                Object.values(offers).map(
+            {Object.values(offers).length > 1 ? (
+              <Swiper
+                spaceBetween={20}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
+                className='swiperModal'>
+                {Object.values(offers).map(
                   (item, index) =>
                     item.TREE.PROP_118 == activeAmount &&
                     item.MORE_PHOTO_RESIZE_IMAGE.length > 0 &&
@@ -86,28 +86,40 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                         <img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC_WEBP || photo.PIC_WEBP}`} alt={name} />
                       </SwiperSlide>
                     ))
-                )
-              ) : morePhoto ? (
-                morePhoto.map((photo, index) => (
+                )}
+              </Swiper>
+            ) : morePhoto.length > 1 ? (
+              <Swiper
+                spaceBetween={20}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation={true}
+                modules={[Pagination, Navigation]}
+                className='swiperModal'>
+                {morePhoto.map((photo, index) => (
                   <SwiperSlide key={index}>
                     <img className={Style.img} src={`https://floridence.com${photo.PIC_WEBP}`} alt={name} />
                   </SwiperSlide>
-                ))
-              ) : (
-                <ModalSkeleton />
-              )}
-              {video !== null ? (
-                <SwiperSlide>
-                  <video className={Style.img} muted loop controls={false} autoPlay={true} playsInline={true}>
-                    <source src={`https://floridence.com${video}`} type='video/mp4' />
-                  </video>
-                </SwiperSlide>
-              ) : gif !== null ? (
-                <SwiperSlide>
-                  <img className={Style.img} src={`https://floridence.com${gif}`} alt={name} />
-                </SwiperSlide>
-              ) : null}
-            </Swiper>
+                ))}
+              </Swiper>
+            ) : morePhoto.length === 1 ? (
+              <img className={Style.img} src={`https://floridence.com${defaultPicture}`} alt={name} />
+            ) : (
+              <ModalSkeleton />
+            )}
+            {/* {video && (
+              <SwiperSlide>
+                <video className={Style.img} muted loop controls={false} autoPlay={true} playsInline={true}>
+                  <source src={`https://floridence.com${video}`} type='video/mp4' />
+                </video>
+              </SwiperSlide>
+            )}
+            {gif && (
+              <SwiperSlide>
+                <img className={Style.img} src={`https://floridence.com${gif}`} alt={name} />
+              </SwiperSlide>
+            )} */}
           </div>
 
           <div className={Style.description}>
