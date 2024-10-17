@@ -6,7 +6,6 @@ function Mono({ isLoading }) {
   const itemsHome = useSelector(state => state.item.items);
 
   const monoItems = itemsHome.map((obj, index) => obj.sectionId == 97 && <FlowerItem key={index} isLoading={isLoading} {...obj} />);
-  console.log(monoItems);
 
   const skeletons = [...new Array(8)].map(index => <Skeleton key={index} />);
 

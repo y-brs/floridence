@@ -22,7 +22,6 @@ export const updateCartOnBitrix = async (id, action, quantity, items, dispatch) 
       data.append(`basket[QUANTITY_${currentItemId}]`, quantity);
     }
 
-    // console.log('[FormData', Object.fromEntries(data), '][itemId', currentItemId, ']');
     try {
       const [response, cartStateResponse] = await Promise.all([
         axios.post('/bitrix/components/bitrix/sale.basket.basket/ajax.php', data, {

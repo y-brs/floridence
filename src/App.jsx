@@ -106,7 +106,6 @@ function App() {
         //         imageUrl: item.IMAGE_URL,
         //       };
 
-        //       // console.log('first render', response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA);
         //       dispatch(addItem(itemData, dispatch));
         //     });
         //   } catch (error) {

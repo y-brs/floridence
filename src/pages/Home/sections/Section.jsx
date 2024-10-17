@@ -8,8 +8,7 @@ function Section({ id, name, isLoading, showMore, code }) {
   const sectionRef = useRef();
   const itemsHome = useSelector(state => state.item.items);
 
-  const monoItems = itemsHome.filter((obj, index) => obj.sectionId == id).map((obj, index) => <FlowerItem key={obj.id} index={index} isLoading={isLoading} {...obj} />);
-
+  const monoItems = itemsHome.filter(obj => obj.sectionId == id).map((obj, index) => <FlowerItem key={obj.id} index={index} isLoading={isLoading} {...obj} />);
   const skeletons = [...new Array(20)].map((_, index) => <Skeleton key={index} />);
 
   useEffect(() => {
