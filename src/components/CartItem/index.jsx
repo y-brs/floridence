@@ -117,9 +117,7 @@ function CartItem({ id, count, imageUrl, name, price, oneItemPrice, amount }) {
         </div>
 
         <div className={Style.item__desc_price}>
-          <span className={Style.item__desc_price_total}>
-            {cartItemPrice} <span>₽</span>
-          </span>
+          <span className={Style.item__desc_price_total}>{cartItemPrice} ₽</span>
           <div className={Style.item__desc_price_moreless}>
             <button
               disabled={loading}
