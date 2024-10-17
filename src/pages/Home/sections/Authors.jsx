@@ -4,8 +4,8 @@ import Skeleton from '../../../components/skeleton/Skeleton';
 
 function Authors({ isLoading }) {
   const itemsHome = useSelector(state => state.item.items);
-  const authorsItems = itemsHome.map((obj, index) => obj.sectionId == 98 && <FlowerItem key={index} {...obj} isLoading={isLoading} />);
-  const skeletons = [...new Array(4)].map((_, index) => <Skeleton key={index} />);
+  const authorsItems = itemsHome.map((obj, index) => obj.sectionId == 98 && <FlowerItem key={index} isLoading={isLoading} {...obj} />);
+  const skeletons = [...new Array(4)].map(index => <Skeleton key={index} />);
 
   const sectionsHeads = window.sectionsHeads;
   return (

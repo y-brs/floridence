@@ -1,9 +1,11 @@
 .promo__container {
   width: 82rem;
   padding-right: 1rem;
+
   @media (max-width: 1300px) {
     width: 92%;
   }
+
   @media (max-width: 1024px) {
     width: 95%;
   }
@@ -17,6 +19,7 @@
 .is-visible {
   opacity: 1;
 }
+
 .promo__head {
   margin: 2rem 0 0;
   padding: 0rem 1rem;
@@ -81,9 +84,11 @@
     cursor: pointer;
     transition: border-radius 0.15s ease-in-out;
     box-shadow: 0px 0.25rem 0.5rem 0px rgba(0, 0, 0, 0.342);
+
     &:hover {
       border-radius: 100%;
     }
+
     &-content {
       position: relative;
       margin: auto;
@@ -111,6 +116,7 @@
     }
   }
 }
+
 .swiperModal {
   width: 31.25rem;
   height: 31.25rem;
@@ -126,13 +132,16 @@
     width: 100%;
   }
 }
+
 .banner {
   margin: 0;
   margin-top: 2rem;
+
   @media (max-width: 425px) {
     margin-top: 1.875rem;
     margin-bottom: 2.5rem;
   }
+
   &__container {
     position: relative;
     height: 18.75rem;
@@ -141,6 +150,7 @@
       height: auto;
     }
   }
+
   .banner__image {
     display: inline-block;
     width: 100%;
@@ -169,6 +179,7 @@
       gap: 0.5rem;
       max-width: 40%;
     }
+
     &-head {
       font-size: 2.5rem;
       font-style: normal;
@@ -218,25 +229,26 @@
 .mono {
   scroll-margin-top: 5rem;
 }
+
 .mono {
-  .card__with-big,
-  .card__without-big {
-    // cursor: pointer;
-  }
   .items:has(.card__with-big:nth-child(10n)) > .card__with-big:nth-child(10n - 1),
   .card__with-big:nth-child(10n) {
     grid-column: 2 span / 2 span;
+
     @media (max-width: 1300px) {
       grid-column: 1 span / 1 span;
     }
+
     .card__top {
       width: 100%;
       height: 45rem;
+
       @media (max-width: 1300px) {
         width: 100%;
         margin: 0;
         height: 23rem;
       }
+
       @media (max-width: 1000px) {
         width: 100%;
         margin: 0;
@@ -256,26 +268,21 @@
     }
   }
 }
+
 .mono,
 .authors,
 .flowerpack {
   margin-top: 2rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
   min-height: 100vh;
-
-  @media (max-width: 425px) {
-    margin-left: 0;
-    margin-right: 0;
-  }
 
   &__head {
     font-size: 1.875rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 2.25rem;
+    line-height: 1.2;
     margin-bottom: 1rem;
   }
+
   .items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

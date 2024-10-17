@@ -5,10 +5,10 @@ import Skeleton from '../../../components/skeleton/Skeleton';
 function Mono({ isLoading }) {
   const itemsHome = useSelector(state => state.item.items);
 
-  const monoItems = itemsHome.map((obj, index) => obj.sectionId == 97 && <FlowerItem key={index} {...obj} isLoading={isLoading} />);
+  const monoItems = itemsHome.map((obj, index) => obj.sectionId == 97 && <FlowerItem key={index} isLoading={isLoading} {...obj} />);
   console.log(monoItems);
 
-  const skeletons = [...new Array(8)].map((_, index) => <Skeleton key={index} />);
+  const skeletons = [...new Array(8)].map(index => <Skeleton key={index} />);
 
   return (
     <section className='mono' id='mono'>

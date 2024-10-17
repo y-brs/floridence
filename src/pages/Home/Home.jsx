@@ -13,17 +13,16 @@ function Home({ isLoading, showMore }) {
   const dispatch = useDispatch();
   const categoryItems = useSelector(state => state.category.categories);
   const carItemLength = useSelector(state => state.cart.basketCount);
-  const section = categoryItems.map((item, index) => <Section key={item.id} isLoading={isLoading} showMore={showMore} {...item} />);
+  const section = categoryItems.map(item => <Section key={item.id} isLoading={isLoading} showMore={showMore} {...item} />);
   const bannerInfo = window.banner;
 
   return (
-    <div className=''>
+    <main>
       <Popup />
 
       <div className='home__cart' onClick={() => dispatch(openCart())}>
         <div className='home__cart-content'>
           <img src={ImageCart} alt='' className='header__cart-img' />
-
           <span className='home__cart-count'>{carItemLength}</span>
         </div>
       </div>
@@ -33,7 +32,7 @@ function Home({ isLoading, showMore }) {
       {bannerInfo.imgSrc && <Banner />}
 
       <div className='section__container'>{section}</div>
-    </div>
+    </main>
   );
 }
 

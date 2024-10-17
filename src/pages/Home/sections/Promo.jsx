@@ -41,7 +41,7 @@ function Promo({ isLoading }) {
 
   const modalItem = promoItemsRedux.filter(obj => obj.id == selectedItemId).map(obj => <Modal key={obj.id} showModal={showModal} closeModal={closeModal} {...obj} />);
 
-  const promoSkeleton = [...new Array(8)].map((_, index) => (
+  const promoSkeleton = [...new Array(8)].map(index => (
     <SwiperSlide key={index}>
       <PromoSkeleton />
     </SwiperSlide>
@@ -88,20 +88,24 @@ function Promo({ isLoading }) {
       <h2 className='promo__head'>{sectionHead.promo}</h2>
 
       <Swiper
-        slidesPerView={1}
+        slidesPerView={1.3}
         spaceBetween={10}
         breakpoints={{
           640: {
-            slidesPerView: 2,
+            slidesPerView: 1.5,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 2.5,
             spaceBetween: 20,
           },
           1024: {
-            slidesPerView: 4,
+            slidesPerView: 3.2,
             spaceBetween: 20,
+          },
+          1300: {
+            slidesPerView: 4,
+            spaceBetween: 30,
           },
         }}
         pagination={{ clickable: true }}

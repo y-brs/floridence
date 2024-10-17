@@ -5,8 +5,8 @@ import Skeleton from '../../../components/skeleton/Skeleton';
 function FlowerPack({ isLoading }) {
   const itemsHome = useSelector(state => state.item.items);
 
-  const packsItems = itemsHome.map((obj, index) => obj.sectionId == 99 && <FlowerItem key={index} {...obj} isLoading={isLoading} />);
-  const skeletons = [...new Array(2)].map((_, index) => <Skeleton key={index} />);
+  const packsItems = itemsHome.map((obj, index) => obj.sectionId == 99 && <FlowerItem key={index} isLoading={isLoading} {...obj} />);
+  const skeletons = [...new Array(2)].map(index => <Skeleton key={index} />);
 
   const sectionsHeads = window.sectionsHeads;
 
