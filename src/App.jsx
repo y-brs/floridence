@@ -77,41 +77,41 @@ function App() {
           axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit`),
           axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount`),
         ]);
-        // if (typeof BX.Sale === 'object' && typeof BX.Sale.BasketComponent === 'object') {
-        //   const data = new FormData();
-        //   data.append('via_ajax', 'Y');
-        //   data.append('preloader_remove', 'Y');
-        //   data.append('fullRecalculation', 'Y');
-        //   data.append('basketAction', 'recalculateAjax');
-        //   data.append('site_id', BX.Sale.BasketComponent.siteId);
-        //   data.append('sessid', BX.bitrix_sessid());
-        //   data.append('template', BX.Sale.BasketComponent.template);
-        //   data.append('signedParamsString', BX.Sale.BasketComponent.signedParamsString);
+        if (typeof BX.Sale === 'object' && typeof BX.Sale.BasketComponent === 'object') {
+          const data = new FormData();
+          data.append('via_ajax', 'Y');
+          data.append('preloader_remove', 'Y');
+          data.append('fullRecalculation', 'Y');
+          data.append('basketAction', 'recalculateAjax');
+          data.append('site_id', BX.Sale.BasketComponent.siteId);
+          data.append('sessid', BX.bitrix_sessid());
+          data.append('template', BX.Sale.BasketComponent.template);
+          data.append('signedParamsString', BX.Sale.BasketComponent.signedParamsString);
 
-        //   try {
-        //     const response = await axios.post('https://floridence.com/bitrix/components/bitrix/sale.basket.basket/ajax.php', data, {
-        //       headers: {
-        //         'Content-Type': 'multipart/form-data',
-        //       },
-        //     });
+          try {
+            const response = await axios.post('https://floridence.com/bitrix/components/bitrix/sale.basket.basket/ajax.php', data, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            });
 
-        //     response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA.map((item, index) => {
-        //       const itemData = {
-        //         id: Number(item.PRODUCT_ID),
-        //         cartId: item.ID,
-        //         name: item.NAME,
-        //         count: item.QUANTITY,
-        //         price: item.FULL_PRICE * item.QUANTITY,
-        //         oneItemPrice: item.FULL_PRICE,
-        //         imageUrl: item.IMAGE_URL,
-        //       };
+            response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA.map((item, index) => {
+              const itemData = {
+                id: Number(item.PRODUCT_ID),
+                cartId: item.ID,
+                name: item.NAME,
+                count: item.QUANTITY,
+                price: item.FULL_PRICE * item.QUANTITY,
+                oneItemPrice: item.FULL_PRICE,
+                imageUrl: item.IMAGE_URL,
+              };
 
-        //       dispatch(addItem(itemData, dispatch));
-        //     });
-        //   } catch (error) {
-        //     console.error(error);
-        //   }
-        // }
+              dispatch(addItem(itemData, dispatch));
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        }
         if (await supportsWebP) {
           isWebpUse.current = true;
         } else {
