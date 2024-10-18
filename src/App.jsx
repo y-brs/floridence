@@ -55,7 +55,6 @@ function App() {
           name: item.NAME,
           properties: item.PROPERTIES,
           sectionId: item.IBLOCK_SECTION_ID,
-          category: item.CATEGORY,
           quantity: item.QUANTITY,
           sort: Number(item.SORT),
         };
@@ -148,7 +147,6 @@ function App() {
             name: item.NAME,
             properties: item.PROPERTIES,
             sectionId: item.IBLOCK_SECTION_ID,
-            category: item.CATEGORY,
             quantity: item.QUANTITY,
           };
           dispatch(addPromoItem(itemPromo));
