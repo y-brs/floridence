@@ -26,6 +26,7 @@
     object-fit: cover;
     width: 4.8rem;
     height: 4.8rem;
+    flex-shrink: 0;
   }
 
   .promo_item_desc {

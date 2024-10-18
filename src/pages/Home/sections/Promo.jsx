@@ -101,7 +101,7 @@ function Promo({ isLoading }) {
             slidesPerView: 3.1,
           },
           1300: {
-            slidesPerView: 4,
+            slidesPerView: 4.2,
             spaceBetween: 30,
           },
         }}
