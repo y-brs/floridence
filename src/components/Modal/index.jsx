@@ -15,7 +15,6 @@ import IconHeight from '/assets/icons/arrow.svg';
 import Style from './Modal.module.scss';
 
 function Modal({ showModal, closeModal, activeItemId, name, description, properties, offers, treeProps, id, price, morePhoto, defaultPicture, gif, video }) {
-  // const isCartOpen = useSelector(state => state.cart.isCartOpen);
   const [valuesData, setValuesData] = useState({});
   const [activeAmount, setActiveAmount] = useState(null);
 

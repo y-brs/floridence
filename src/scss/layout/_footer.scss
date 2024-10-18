@@ -249,14 +249,19 @@
       margin-left: auto;
       margin-right: 0;
 
+      @media (max-width: 850px) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
       &-list {
         display: flex;
         align-items: center;
         gap: 1.2rem;
-      }
 
-      @media (max-width: 400px) {
-        flex-wrap: wrap;
+        @media (max-width: 400px) {
+          flex-wrap: wrap;
+        }
       }
 
       &-img {

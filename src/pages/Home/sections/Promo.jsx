@@ -88,20 +88,17 @@ function Promo({ isLoading }) {
       <h2 className='promo__head'>{sectionHead.promo}</h2>
 
       <Swiper
-        slidesPerView={1.3}
-        spaceBetween={10}
+        slidesPerView={1.1}
+        spaceBetween={20}
         breakpoints={{
-          640: {
-            slidesPerView: 1.5,
-            spaceBetween: 20,
+          600: {
+            slidesPerView: 2.1,
           },
           768: {
-            slidesPerView: 2.5,
-            spaceBetween: 20,
+            slidesPerView: 2.1,
           },
           1024: {
-            slidesPerView: 3.2,
-            spaceBetween: 20,
+            slidesPerView: 3.1,
           },
           1300: {
             slidesPerView: 4,

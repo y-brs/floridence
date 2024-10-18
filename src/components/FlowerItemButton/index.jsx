@@ -12,10 +12,10 @@ function FlowerItemButton({ id, count, imageUrl, name, oneItemPrice, offers }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cart.items);
 
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState();
 
   const [timerId, setTimerId] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
 
   function addToCart() {
     setIsButtonClicked(!isButtonClicked);
