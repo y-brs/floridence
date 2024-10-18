@@ -26,21 +26,20 @@ function Cart({ cartItems }) {
     const handleModalStyles = () => {
       const lockedModal = document.querySelector('.modal-overlay');
       const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
+      const lockedContainer = document.querySelector('.header');
 
       if (isCartOpen) {
-        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
         lockedContainer.style.paddingRight = lockedPaddingValue;
         document.body.style.paddingRight = lockedPaddingValue;
       } else {
         setTimeout(() => {
-          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
           document.body.style.paddingRight = '';
           lockedContainer.style.paddingRight = '';
         }, 200);
       }
     };
-
-    const lockedContainer = document.querySelector('.header');
 
     handleModalStyles();
     document.addEventListener('keydown', handleKeyDown);
