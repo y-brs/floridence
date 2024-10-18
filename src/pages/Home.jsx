@@ -9,7 +9,7 @@ import Banner from './sections/Banner';
 import Promo from './sections/Promo';
 import Section from './sections/Section';
 
-import cartSvg from '../../public/assets/icons/cart.svg';
+import ImageCart from '/assets/icons/cart.svg';
 
 function Home({ isLoading, showMore }) {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function Home({ isLoading, showMore }) {
 
       <div className='home__cart' onClick={() => dispatch(openCart())}>
         <div className='home__cart-content'>
-          <img src={cartSvg} alt='' className='header__cart-img' />
+          <img src={ImageCart} alt='' className='header__cart-img' />
 
           <span className='home__cart-count'>{carItemLength}</span>
         </div>
