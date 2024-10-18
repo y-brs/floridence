@@ -8,13 +8,12 @@
   position: fixed;
   top: 0;
   left: 0;
+
   .header__container {
     flex-direction: row;
     width: 100%;
     padding: 0.9rem 16%;
     transition: padding 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-
-    backdrop-filter: blur(20px);
 
     @media (max-width: 1300px) {
       padding: 1rem 5% 1rem 5%;
@@ -60,7 +59,7 @@
     gap: 1.2rem;
     margin: 0 auto;
     background-color: #fff;
-    padding: 1.8rem 17% 1.8rem 16.5%;
+    padding: 1.8rem 16.5% 1.8rem 16.5%;
     height: 100%;
     width: 100%;
 
