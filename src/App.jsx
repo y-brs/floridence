@@ -10,13 +10,13 @@ import { addBasketCount, addBasketSum } from './redux/slices/cartSlice';
 import { addCategory } from './redux/slices/categorySlice';
 import { addHomeItem, addPromoItem } from './redux/slices/itemSlice';
 
+import Header from './components/Header';
+import Home from './pages/Home';
+import './scss/app.scss';
+
 import Cart from './components/Cart';
 import Footer from './components/Footer';
-import Header from './components/Header';
 import MobileMenu from './components/MobileMenu';
-import Home from './pages/Home/Home';
-
-import './scss/app.scss';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +32,6 @@ function App() {
       const bitrixResponse = await axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlist&page=${page}`);
 
       setPageCount(bitrixResponse.data.pagination.pageCount);
-
       if (await supportsWebP) {
         isWebpUse.current = true;
       } else {
@@ -106,18 +105,19 @@ function App() {
         //         imageUrl: item.IMAGE_URL,
         //       };
 
+        //       // console.log('first render', response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA);
         //       dispatch(addItem(itemData, dispatch));
         //     });
         //   } catch (error) {
         //     console.error(error);
         //   }
         // }
-        // if (await supportsWebP) {
-        //   isWebpUse.current = true;
-        // } else {
-        //   isWebpUse.current = false;
-        // }
-        // setCartItems(cartResponse.data);
+        if (await supportsWebP) {
+          isWebpUse.current = true;
+        } else {
+          isWebpUse.current = false;
+        }
+        setCartItems(cartResponse.data);
 
         Object.values(categoryResponse.data).map((item, index) => {
           const itemCategoryData = {

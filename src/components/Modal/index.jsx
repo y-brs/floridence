@@ -50,16 +50,8 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
 
   return (
     <motion.div onClick={closeModal} variants={backdrop} initial='hidden' animate='visible' exit='exit' className={`${Style.overlay} modal-overlay`}>
-      <div
-        className={Style.modal}
-        onClick={e => {
-          e.stopPropagation();
-        }}>
-        <button
-          className={Style.btn_close}
-          onClick={() => {
-            closeModal();
-          }}>
+      <div className={Style.modal} onClick={e => e.stopPropagation()}>
+        <button className={Style.btn_close} onClick={() => closeModal()}>
           <svg className={Style.btn_close_svg} width='34' height='34' viewBox='0 0 34 34' fill='none'>
             <path d='M2 2L32 32' stroke='black' strokeWidth='3' />
             <path d='M32 2L2 32' stroke='black' strokeWidth='3' />
@@ -67,16 +59,16 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
         </button>
         <div className={Style.container}>
           <div className={Style.left__block}>
-            {Object.values(offers).length > 1 ? (
-              <Swiper
-                spaceBetween={20}
-                pagination={{
-                  clickable: true,
-                }}
-                navigation={true}
-                modules={[Pagination, Navigation]}
-                className='swiperModal'>
-                {Object.values(offers).map(
+            <Swiper
+              spaceBetween={20}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Pagination, Navigation]}
+              className='swiperModal'>
+              {Object.values(offers).length > 1 ? (
+                Object.values(offers).map(
                   (item, index) =>
                     item.TREE.PROP_118 == activeAmount &&
                     item.MORE_PHOTO_RESIZE_IMAGE.length > 0 &&
@@ -85,40 +77,33 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                         <img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC_WEBP || photo.PIC_WEBP}`} alt={name} />
                       </SwiperSlide>
                     ))
-                )}
-              </Swiper>
-            ) : morePhoto.length > 1 ? (
-              <Swiper
-                spaceBetween={20}
-                pagination={{
-                  clickable: true,
-                }}
-                navigation={true}
-                modules={[Pagination, Navigation]}
-                className='swiperModal'>
-                {morePhoto.map((photo, index) => (
+                )
+              ) : morePhoto.length > 1 ? (
+                morePhoto.map((photo, index) => (
                   <SwiperSlide key={index}>
                     <img className={Style.img} src={`https://floridence.com${photo.PIC_WEBP}`} alt={name} />
                   </SwiperSlide>
-                ))}
-              </Swiper>
-            ) : morePhoto.length === 1 ? (
-              <img className={Style.img} src={`https://floridence.com${defaultPicture}`} alt={name} />
-            ) : (
-              <ModalSkeleton />
-            )}
-            {/* {video && (
-              <SwiperSlide>
-                <video className={Style.img} muted loop controls={false} autoPlay={true} playsInline={true}>
-                  <source src={`https://floridence.com${video}`} type='video/mp4' />
-                </video>
-              </SwiperSlide>
-            )}
-            {gif && (
-              <SwiperSlide>
-                <img className={Style.img} src={`https://floridence.com${gif}`} alt={name} />
-              </SwiperSlide>
-            )} */}
+                ))
+              ) : morePhoto.length === 1 ? (
+                <SwiperSlide>
+                  <img className={Style.img} src={`https://floridence.com${defaultPicture}`} alt={name} />
+                </SwiperSlide>
+              ) : (
+                <ModalSkeleton />
+              )}
+              {video && (
+                <SwiperSlide>
+                  <video className={Style.img} muted loop controls={false} autoPlay={true} playsInline={true}>
+                    <source src={`https://floridence.com${video}`} type='video/mp4' />
+                  </video>
+                </SwiperSlide>
+              )}
+              {gif && (
+                <SwiperSlide>
+                  <img className={Style.img} src={`https://floridence.com${gif}`} alt={name} />
+                </SwiperSlide>
+              )}
+            </Swiper>
           </div>
 
           <div className={Style.description}>

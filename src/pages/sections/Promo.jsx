@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import Modal from '../../../components/Modal';
-import PromoItem from '../../../components/PromoItem';
-import PromoSkeleton from '../../../components/skeleton/PromoSkeleton';
+import Modal from '../../components/Modal';
+import PromoItem from '../../components/PromoItem';
+import PromoSkeleton from '../../components/skeleton/PromoSkeleton';
 
 import 'swiper/css';
 import 'swiper/css/pagination';

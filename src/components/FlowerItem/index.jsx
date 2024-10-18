@@ -38,9 +38,9 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
     const lockedModal = document.querySelector('.modal-overlay');
     const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
 
-    document.documentElement.style.overflow = 'hidden';
-    lockedContainer.style.paddingRight = lockedPaddingValue;
+    document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = lockedPaddingValue;
+    lockedContainer.style.paddingRight = lockedPaddingValue;
   }, []);
 
   const closeModal = useCallback(() => {
@@ -48,7 +48,7 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
     setModalHash(null);
 
     setTimeout(() => {
-      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
       document.body.style.paddingRight = '';
       lockedContainer.style.paddingRight = '';
     }, 200);

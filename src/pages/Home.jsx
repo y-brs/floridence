@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { openCart } from '../../redux/slices/cartSlice';
+import { openCart } from '../redux/slices/cartSlice';
 
-import Popup from '../../components/Popup';
+import Popup from '../components/Popup';
 import Banner from './sections/Banner';
 
 import Promo from './sections/Promo';

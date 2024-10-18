@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-import FlowerItem from '../../../components/FlowerItem';
-import Skeleton from '../../../components/skeleton/Skeleton';
+import FlowerItem from '../../components/FlowerItem';
+import Skeleton from '../../components/skeleton/Skeleton';
 
 function Section({ id, name, isLoading, showMore, code }) {
   const sectionRef = useRef();
