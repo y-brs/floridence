@@ -28,6 +28,10 @@
   box-shadow: 0 0.3rem 2rem 0.1rem #0000003c;
   opacity: 0;
   transition: transform 0.15s ease, opacity 0.1s ease-in-out;
+
+  @media (max-width: 500px) {
+    width: 80%;
+  }
 }
 
 .text {
@@ -35,6 +39,10 @@
   display: flex;
   gap: 0.5rem;
   align-items: center;
+
+  svg {
+    flex-shrink: 0;
+  }
 
   @media (max-width: 500px) {
     font-size: 1rem;

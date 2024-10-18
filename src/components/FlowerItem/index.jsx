@@ -28,15 +28,31 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
   const [modalHash, setModalHash] = useState();
   const [scrollPosition, setScrollPosition] = useState(0);
 
+  const lockedContainer = document.querySelector('.header');
+
   const openModal = useCallback(hash => {
     setShowModal(true);
     setModalHash(hash);
     setScrollPosition(window.scrollY);
+
+    const lockedModal = document.querySelector('.modal-overlay');
+    const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
+
+    document.documentElement.style.overflow = 'hidden';
+    lockedContainer.style.paddingRight = lockedPaddingValue;
+    document.body.style.paddingRight = lockedPaddingValue;
   }, []);
 
   const closeModal = useCallback(() => {
     setShowModal(false);
     setModalHash(null);
+
+    setTimeout(() => {
+      document.documentElement.style.overflow = '';
+      document.body.style.paddingRight = '';
+      lockedContainer.style.paddingRight = '';
+    }, 200);
+
     window.location.hash = '';
     const urlWithoutHash = window.location.href.split('#')[0]; // Получаем URL без хэша
     window.history.replaceState({}, document.title, urlWithoutHash); // Обновляем URL без хэша
@@ -61,6 +77,7 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
   useEffect(() => {
     const handleHashChange = () => {
       const urlHash = window.location.hash.substring(1);
+
       if (urlHash === id.toString()) {
         openModal(urlHash);
       }
@@ -69,6 +86,7 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
     handleHashChange(); // Проверяем при загрузке страницы
 
     window.addEventListener('hashchange', handleHashChange);
+
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
@@ -76,31 +94,11 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
 
   useEffect(() => {
     const handleKeyDown = e => {
-      if (e.key === 'Escape' || e.keyCode === 27) {
+      if (e.key === 'Escape' || e.key === 27) {
         closeModal();
       }
     };
 
-    const handleModalStyles = () => {
-      const lockedModal = document.querySelector('.modal-overlay');
-      const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
-
-      if (showModal) {
-        document.documentElement.style.overflow = 'hidden';
-        lockedContainer.style.paddingRight = lockedPaddingValue;
-        document.body.style.paddingRight = lockedPaddingValue;
-      } else {
-        setTimeout(() => {
-          document.documentElement.style.overflow = '';
-          document.body.style.paddingRight = '';
-          lockedContainer.style.paddingRight = '';
-        }, 200);
-      }
-    };
-
-    const lockedContainer = document.querySelector('.header');
-
-    handleModalStyles();
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
