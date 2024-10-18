@@ -17,7 +17,7 @@ function PromoItem({ name, price, defaultPicture, offers }) {
   return (
     <div className={Style.promo_item}>
       <div className={Style.promo_item_container}>
-        <img className={Style.promo_item_img} src={`https://floridence.com${defaultPicture}`} alt={name} />
+        <img className={Style.promo_item_img} src={`https://floridence.com${defaultPicture}`} alt={name} loading='lazy' decoding='async' />
 
         <div className={Style.promo_item_desc}>
           <h3 className={Style.promo_item_name}>{name}</h3>

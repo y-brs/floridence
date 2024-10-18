@@ -27,7 +27,7 @@ function Footer() {
                 {footerTopSocial.map((icon, index) => (
                   <li className='footer-top__soc-item' key={index}>
                     <a href={icon.href} className='footer-top__soc-link'>
-                      <img src={icon.imgUrl} alt={icon.name} />
+                      <img src={icon.imgUrl} alt={icon.name} loading='lazy' decoding='sync' />
                     </a>
                   </li>
                 ))}
@@ -76,7 +76,7 @@ function Footer() {
             <div className='footer-bot__payment'>
               <div className='footer-bot__payment-list'>
                 {footerPayment.map((img, index) => (
-                  <img key={index} src={img.imgUrl} alt={img.alt} className='footer-bot__payment-img' />
+                  <img key={index} src={img.imgUrl} alt={img.alt} className='footer-bot__payment-img' loading='lazy' decoding='sync' />
                 ))}
               </div>
             </div>
