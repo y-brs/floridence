@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import ModalPriceBtn from '../ModalPriceBtn';
-import ModalSkeleton from '../skeleton/ModalSkeleton';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -84,12 +83,10 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                     <img className={Style.img} src={`https://floridence.com${photo.PIC_WEBP}`} alt={name} />
                   </SwiperSlide>
                 ))
-              ) : morePhoto.length === 1 ? (
+              ) : (
                 <SwiperSlide>
                   <img className={Style.img} src={`https://floridence.com${defaultPicture}`} alt={name} />
                 </SwiperSlide>
-              ) : (
-                <ModalSkeleton />
               )}
               {video && (
                 <SwiperSlide>
