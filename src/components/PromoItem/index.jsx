@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 import Style from './PromoItem.module.scss';
 
 function PromoItem({ name, price, defaultPicture, offers }) {
-  const [productPrice, setProductPrice] = useState();
   const productPriceValue = Object.values(price)[0]?.PRICE;
   const offerPriceValue = Object.values(offers)[0]?.PRICES;
-
-  useEffect(() => {
-    setProductPrice(productPriceValue || Object.values(offerPriceValue)[0]?.PRICE);
-  }, []);
 
   return (
     <div className={Style.promo_item}>
@@ -21,7 +14,9 @@ function PromoItem({ name, price, defaultPicture, offers }) {
 
         <div className={Style.promo_item_desc}>
           <h3 className={Style.promo_item_name}>{name}</h3>
-          <span className={Style.promo_item_price}>{new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(productPrice).replace('.', '').split(',')[0]} ₽</span>
+          <span className={Style.promo_item_price}>
+            {new Intl.NumberFormat('ru-RU', { maximumSignificantDigits: 3 }).format(productPriceValue ? productPriceValue : Object.values(offerPriceValue)[0]?.PRICE)}&nbsp;₽
+          </span>
         </div>
       </div>
     </div>
