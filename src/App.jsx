@@ -27,9 +27,11 @@ function App() {
   const currentPage = useRef(1);
   const [pageCount, setPageCount] = useState(6);
 
+  // const MODE = 'dev';
+
   async function fetchMainData(page) {
     try {
-      const bitrixResponse = await axios.get(`/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlist&page=${page}`);
+      const bitrixResponse = await axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlist&page=${page}`);
 
       setPageCount(bitrixResponse.data.pagination.pageCount);
       if (await supportsWebP) {
@@ -72,45 +74,47 @@ function App() {
       try {
         setIsLoading(true);
         const [categoryResponse, hitResponse, cartResponse] = await Promise.all([
-          axios.get(`/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=sectionlist`),
-          axios.get(`/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit`),
-          axios.get(`/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount`),
+          axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=sectionlist`),
+          axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit`),
+          axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount`),
         ]);
 
-        if (typeof BX.Sale === 'object' && typeof BX.Sale.BasketComponent === 'object') {
-          const data = new FormData();
-          data.append('via_ajax', 'Y');
-          data.append('preloader_remove', 'Y');
-          data.append('fullRecalculation', 'Y');
-          data.append('basketAction', 'recalculateAjax');
-          data.append('site_id', BX.Sale.BasketComponent.siteId);
-          data.append('sessid', BX.bitrix_sessid());
-          data.append('template', BX.Sale.BasketComponent.template);
-          data.append('signedParamsString', BX.Sale.BasketComponent.signedParamsString);
+        if (typeof MODE === 'undefined') {
+          if (typeof BX.Sale === 'object' && typeof BX.Sale.BasketComponent === 'object') {
+            const data = new FormData();
+            data.append('via_ajax', 'Y');
+            data.append('preloader_remove', 'Y');
+            data.append('fullRecalculation', 'Y');
+            data.append('basketAction', 'recalculateAjax');
+            data.append('site_id', BX.Sale.BasketComponent.siteId);
+            data.append('sessid', BX.bitrix_sessid());
+            data.append('template', BX.Sale.BasketComponent.template);
+            data.append('signedParamsString', BX.Sale.BasketComponent.signedParamsString);
 
-          try {
-            const response = await axios.post('/bitrix/components/bitrix/sale.basket.basket/ajax.php', data, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
-            });
+            try {
+              const response = await axios.post('https://floridence.com/bitrix/components/bitrix/sale.basket.basket/ajax.php', data, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                },
+              });
 
-            response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA.map((item, index) => {
-              const itemData = {
-                id: Number(item.PRODUCT_ID),
-                cartId: item.ID,
-                name: item.NAME,
-                count: item.QUANTITY,
-                price: item.FULL_PRICE * item.QUANTITY,
-                oneItemPrice: item.FULL_PRICE,
-                imageUrl: item.IMAGE_URL,
-              };
+              response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA.map((item, index) => {
+                const itemData = {
+                  id: Number(item.PRODUCT_ID),
+                  cartId: item.ID,
+                  name: item.NAME,
+                  count: item.QUANTITY,
+                  price: item.FULL_PRICE * item.QUANTITY,
+                  oneItemPrice: item.FULL_PRICE,
+                  imageUrl: item.IMAGE_URL,
+                };
 
-              // console.log('first render', response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA);
-              dispatch(addItem(itemData, dispatch));
-            });
-          } catch (error) {
-            console.error(error);
+                // console.log('first render', response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA);
+                dispatch(addItem(itemData, dispatch));
+              });
+            } catch (error) {
+              console.error(error);
+            }
           }
         }
 

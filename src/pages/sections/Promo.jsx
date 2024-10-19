@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 
 import Modal from '../../components/Modal';
 import PromoItem from '../../components/PromoItem';
-import PromoSkeleton from '../../components/skeleton/PromoSkeleton';
+
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -31,19 +33,21 @@ function Promo({ isLoading }) {
 
   const promoItems = promoItemsRedux.map(obj => (
     <SwiperSlide
-      key={obj.id}
+      key={'P' + obj.id}
       onClick={() => {
         openModal(obj.id);
       }}>
-      <PromoItem {...obj} />
+      <PromoItem {...obj} isLoading={isLoading} />
     </SwiperSlide>
   ));
 
   const modalItem = promoItemsRedux.filter(obj => obj.id == selectedItemId).map(obj => <Modal key={obj.id} showModal={showModal} closeModal={closeModal} {...obj} />);
 
-  const promoSkeleton = [...new Array(8)].map(index => (
+  const promoSkeleton = [...new Array(5)].map(index => (
     <SwiperSlide key={index}>
-      <PromoSkeleton />
+      <div className='promo_item-skeleton'>
+        <Skeleton height='100%' containerClassName='max-container' />
+      </div>
     </SwiperSlide>
   ));
 
@@ -58,6 +62,8 @@ function Promo({ isLoading }) {
       const lockedModal = document.querySelector('.modal-overlay');
       const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
 
+      const lockedContainer = document.querySelector('.header');
+
       if (showModal) {
         document.documentElement.style.overflow = 'hidden';
         lockedContainer.style.paddingRight = lockedPaddingValue;
@@ -70,8 +76,6 @@ function Promo({ isLoading }) {
         }, 200);
       }
     };
-
-    const lockedContainer = document.querySelector('.header');
 
     handleModalStyles();
     document.addEventListener('keydown', handleKeyDown);
