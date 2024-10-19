@@ -29,6 +29,14 @@
     margin-left: 0;
     margin-right: 0;
 
+    svg {
+      transition: transform 0.15s ease-in-out;
+    }
+
+    &:hover svg {
+      transform: rotate(90deg);
+    }
+
     @media (max-width: 590px) {
       width: 0.825rem;
 

@@ -89,8 +89,8 @@ function Header({}) {
                 />
               </svg>
             </button>
+
             <button className='header__burger' onClick={() => dispatch(openMenu())} aria-label='Открыть меню'>
-              {/*  */}
               <svg width='23' height='19' viewBox='0 0 23 19' fill='none'>
                 <path d='M0 2.06458H23' stroke='black' strokeWidth='3' />
                 <path d='M0 16.5162H23' stroke='black' strokeWidth='3' />

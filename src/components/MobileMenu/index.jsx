@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { closeMenu } from '../../redux/slices/mobileMenuSlice';
 
-import { useEffect } from 'react';
 import Style from './MobileMenu.module.scss';
+
 function MobileMenu() {
   const dispatch = useDispatch();
   const isMobileOpen = useSelector(state => state.menu.isMenuOpen);
@@ -21,6 +21,7 @@ function MobileMenu() {
       document.body.style.overflow = 'unset';
     }
   }, [isMobileOpen]);
+
   return (
     <div
       className={isMobileOpen ? Style.mobileMenu : Style.mobileMenu_close}
@@ -39,17 +40,15 @@ function MobileMenu() {
               <path d='M24 1L1 24' stroke='#D4D4D4' strokeWidth='2' />
             </svg>
           </button>
+
           <ul className={Style.menulist}>
-            <li className={Style.menulist_item}>
-              <Link to={footerTopLinks[0].href} onClick={() => dispatch(closeMenu())}>
-                {footerTopLinks[0].name}
-              </Link>
-            </li>
-            <li className={Style.menulist_item}>
-              <Link to={footerTopLinks[1].href} onClick={() => dispatch(closeMenu())}>
-                {footerTopLinks[1].name}
-              </Link>
-            </li>
+            {linksHeader.map((link, index) => (
+              <li key={index} className={Style.menulist_item}>
+                <a href={link.href} onClick={() => dispatch(closeMenu())}>
+                  {link.name}
+                </a>
+              </li>
+            ))}
           </ul>
 
           <ul className={Style.phonelist}>
@@ -67,7 +66,7 @@ function MobileMenu() {
             {footerTopSocial.map((item, index) => (
               <li key={index} className={Style.sociallist_item}>
                 <a href={item.href} className={Style.sociallist_link} onClick={() => dispatch(closeMenu())}>
-                  <img src={item.imgUrl} alt='' />
+                  <img src={item.imgUrl} alt={item.name} loading='lazy' decoding='sync' />
                 </a>
               </li>
             ))}
@@ -76,9 +75,9 @@ function MobileMenu() {
           <ul className={Style.botmenu_list}>
             {footerBottomLinks.reverse().map((item, index) => (
               <li key={index} className={Style.botmenu_list_item}>
-                <Link to={item.href} onClick={() => dispatch(closeMenu())}>
+                <a href={item.href} onClick={() => dispatch(closeMenu())}>
                   {item.name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
