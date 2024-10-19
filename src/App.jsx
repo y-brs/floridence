@@ -20,14 +20,13 @@ import MobileMenu from './components/MobileMenu';
 
 function App() {
   const dispatch = useDispatch();
-  const isWebpUse = useRef(false);
   const [cartItems, setCartItems] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const currentPage = useRef(1);
   const [pageCount, setPageCount] = useState(6);
 
-  const MODE = 'dev';
+  // const MODE = 'dev';
 
   async function fetchMainData(page) {
     try {
@@ -35,17 +34,12 @@ function App() {
 
       setPageCount(bitrixResponse.data.pagination.pageCount);
 
-      if (await supportsWebP) {
-        isWebpUse.current = true;
-      } else {
-        isWebpUse.current = false;
-      }
+      const isWebP = await supportsWebP;
 
       bitrixResponse.data.list.map(item => {
         const itemHomeData = {
           id: Number(item.ID),
-          defaultPicture:
-            item.RESIZE_IMAGE && isWebpUse.current == true ? item.RESIZE_IMAGE.PIC_WEBP : item.RESIZE_IMAGE && isWebpUse.current == false ? item.RESIZE_IMAGE.PIC : item.PREVIEW_PICTURE.SRC,
+          defaultPicture: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC : item.PREVIEW_PICTURE.SRC,
           gif: item.GIF_PHOTO,
           video: item.VIDEO,
           description: item.PREVIEW_TEXT,
@@ -74,10 +68,11 @@ function App() {
     async function fetchData() {
       try {
         setIsLoading(true);
+
         const [categoryResponse, hitResponse, cartResponse] = await axios.all([
-          axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=sectionlist`),
-          axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit`),
-          axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount`),
+          axios.get('https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=sectionlist'),
+          axios.get('https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit'),
+          axios.get('https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount'),
         ]);
 
         if (typeof MODE === 'undefined') {
@@ -119,12 +114,6 @@ function App() {
           }
         }
 
-        if (await supportsWebP) {
-          isWebpUse.current = true;
-        } else {
-          isWebpUse.current = false;
-        }
-
         setCartItems(cartResponse.data);
 
         Object.values(categoryResponse.data).map((item, index) => {
@@ -137,11 +126,12 @@ function App() {
           dispatch(addCategory(itemCategoryData));
         });
 
+        const isWebP = await supportsWebP;
+
         hitResponse.data.map(item => {
           const itemPromo = {
             id: item.ID,
-            defaultPicture:
-              item.RESIZE_IMAGE && isWebpUse.current == true ? item.RESIZE_IMAGE.PIC_WEBP : item.RESIZE_IMAGE && isWebpUse.current == false ? item.RESIZE_IMAGE.PIC : item.PREVIEW_PICTURE.SRC,
+            defaultPicture: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC : item.PREVIEW_PICTURE.SRC,
             description: item.PREVIEW_TEXT,
             morePhoto: item.MORE_PHOTO_RESIZE_IMAGE,
             offers: item.OFFERS,
@@ -168,7 +158,7 @@ function App() {
 
     fetchData();
 
-    var videoElements = document.querySelectorAll('video');
+    let videoElements = document.querySelectorAll('video');
 
     videoElements.forEach(function (videoElement) {
       videoElement.controls = false;
@@ -186,7 +176,7 @@ function App() {
   const handleNextPageClick = () => {
     if (currentPage.current < pageCount) {
       fetchMainData(currentPage.current + 1);
-      currentPage.current = currentPage.current + 1;
+      currentPage.current += 1;
     }
   };
 
