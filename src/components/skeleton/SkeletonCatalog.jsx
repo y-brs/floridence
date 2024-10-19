@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 function SkeletonCatalog() {
   return (
     <div className='skeleton__container'>
-      <div className='mono'>
+      <div className='catalog'>
         <Skeleton width={200} height={28} />
 
         <div className='skeleton__catalog'>

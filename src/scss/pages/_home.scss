@@ -225,11 +225,11 @@
     }
   }
 }
-.mono {
+.catalog {
   scroll-margin-top: 5rem;
 }
 
-.mono {
+.catalog {
   .items:has(.card__with-big:nth-child(10n)) > .card__with-big:nth-child(10n - 1),
   .card__with-big:nth-child(10n) {
     grid-column: 2 span / 2 span;
@@ -268,7 +268,7 @@
   }
 }
 
-.mono,
+.catalog,
 .authors,
 .flowerpack {
   margin-top: 2rem;

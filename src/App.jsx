@@ -27,13 +27,14 @@ function App() {
   const currentPage = useRef(1);
   const [pageCount, setPageCount] = useState(6);
 
-  // const MODE = 'dev';
+  const MODE = 'dev';
 
   async function fetchMainData(page) {
     try {
       const bitrixResponse = await axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlist&page=${page}`);
 
       setPageCount(bitrixResponse.data.pagination.pageCount);
+
       if (await supportsWebP) {
         isWebpUse.current = true;
       } else {
@@ -73,7 +74,7 @@ function App() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const [categoryResponse, hitResponse, cartResponse] = await Promise.all([
+        const [categoryResponse, hitResponse, cartResponse] = await axios.all([
           axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=sectionlist`),
           axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit`),
           axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount`),

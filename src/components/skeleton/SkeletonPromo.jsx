@@ -29,7 +29,7 @@ function SkeletonPromo() {
         }}
         direction={'horizontal'}
         className='promoSwiper'>
-        {[...new Array(5)].map(index => (
+        {[...new Array(5)].map((_, index) => (
           <SwiperSlide key={index}>
             <div className='skeleton_promo-item'>
               <div className='promo-item_image'>
