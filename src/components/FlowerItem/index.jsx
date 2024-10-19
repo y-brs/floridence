@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import FlowerItemButton from '../FlowerItemButton';
@@ -149,7 +149,8 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
               clickable: true,
             }}
             loop={true}
-            modules={[Pagination]}
+            navigation={true}
+            modules={[Pagination, Navigation]}
             className='swiperCard'>
             {morePhoto.map((item, index) => (
               <SwiperSlide key={index}>

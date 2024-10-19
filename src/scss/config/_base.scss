@@ -95,6 +95,15 @@ section {
 .swiper-button-prev::after {
   color: #ffffff !important;
   font-size: 2rem !important;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.swiper:hover {
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    opacity: 1;
+  }
 }
 
 img {

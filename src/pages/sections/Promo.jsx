@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import Modal from '../../components/Modal';
 import PromoItem from '../../components/PromoItem';
 
-import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import SkeletonPromo from '../../components/skeleton/SkeletonPromo';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -42,14 +42,6 @@ function Promo({ isLoading }) {
   ));
 
   const modalItem = promoItemsRedux.filter(obj => obj.id == selectedItemId).map(obj => <Modal key={obj.id} showModal={showModal} closeModal={closeModal} {...obj} />);
-
-  const promoSkeleton = [...new Array(5)].map(index => (
-    <SwiperSlide key={index}>
-      <div className='promo_item-skeleton'>
-        <Skeleton height='100%' containerClassName='max-container' />
-      </div>
-    </SwiperSlide>
-  ));
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -89,33 +81,39 @@ function Promo({ isLoading }) {
     <div className='promo__container'>
       {showModal && modalItem}
 
-      <h2 className='promo__head'>{sectionHead.promo}</h2>
+      {isLoading ? (
+        <SkeletonPromo />
+      ) : (
+        <>
+          <h2 className='promo__head'>{sectionHead.promo}</h2>
 
-      <Swiper
-        slidesPerView={1.1}
-        spaceBetween={20}
-        breakpoints={{
-          600: {
-            slidesPerView: 2.1,
-          },
-          768: {
-            slidesPerView: 2.1,
-          },
-          1024: {
-            slidesPerView: 3.1,
-          },
-          1300: {
-            slidesPerView: 4.2,
-            spaceBetween: 30,
-          },
-        }}
-        pagination={{ clickable: true }}
-        mousewheel={true}
-        direction={'horizontal'}
-        modules={[Mousewheel]}
-        className='promoSwiper'>
-        {isLoading ? promoSkeleton : promoItems}
-      </Swiper>
+          <Swiper
+            slidesPerView={1.1}
+            spaceBetween={20}
+            breakpoints={{
+              600: {
+                slidesPerView: 2.1,
+              },
+              768: {
+                slidesPerView: 2.1,
+              },
+              1024: {
+                slidesPerView: 3.1,
+              },
+              1300: {
+                slidesPerView: 4.2,
+                spaceBetween: 30,
+              },
+            }}
+            pagination={{ clickable: true }}
+            mousewheel={true}
+            direction={'horizontal'}
+            modules={[Mousewheel]}
+            className='promoSwiper'>
+            {promoItems}
+          </Swiper>
+        </>
+      )}
     </div>
   );
 }
