@@ -27,7 +27,7 @@ function App() {
   const currentPage = useRef(1);
   const [pageCount, setPageCount] = useState(6);
 
-  const MODE = 'dev';
+  // const MODE = 'dev';
 
   async function fetchMainData(page) {
     try {
