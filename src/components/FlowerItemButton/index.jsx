@@ -102,6 +102,7 @@ function FlowerItemButton({ id, count, imageUrl, name, oneItemPrice, offers }) {
         className={isButtonClicked && !loading ? Style.card__btn_added : Style.card__btn}>
         {isButtonClicked && !loading ? 'В корзинe' : 'В корзину'}
       </button>
+      {loading && <div className={Style.loader}></div>}
     </>
   );
 }
