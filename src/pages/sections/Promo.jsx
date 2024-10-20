@@ -7,6 +7,7 @@ import PromoItem from '../../components/PromoItem';
 import 'react-loading-skeleton/dist/skeleton.css';
 import SkeletonPromo from '../../components/skeleton/SkeletonPromo';
 
+import { AnimatePresence } from 'framer-motion';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Mousewheel } from 'swiper/modules';
@@ -79,7 +80,7 @@ function Promo({ isLoading }) {
 
   return (
     <div className='promo__container'>
-      {showModal && modalItem}
+      <AnimatePresence>{showModal && modalItem}</AnimatePresence>
 
       {isLoading ? (
         <SkeletonPromo />
