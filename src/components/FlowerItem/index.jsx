@@ -40,6 +40,14 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, 
     window.location.hash = '';
     const urlWithoutHash = window.location.href.split('#')[0]; // Получаем URL без хэша
     window.history.replaceState({}, document.title, urlWithoutHash); // Обновляем URL без хэша
+
+    // !!! work with 1px in safari
+    // window.scrollBy({
+    //   top: 100,
+    //   left: 0,
+    //   behavior: 'smooth'
+    // });
+
     window.scrollTo(0, scrollPosition);
   }, [scrollPosition]);
 
