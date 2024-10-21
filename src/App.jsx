@@ -26,7 +26,7 @@ function App() {
   const currentPage = useRef(1);
   const [pageCount, setPageCount] = useState(6);
 
-  // const MODE = 'dev';
+  const MODE = 'dev';
 
   async function fetchMainData(page) {
     try {
@@ -40,6 +40,8 @@ function App() {
         const itemHomeData = {
           id: Number(item.ID),
           defaultPicture: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC : item.PREVIEW_PICTURE.SRC,
+          photoDefault: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC2_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC2 : item.PREVIEW_PICTURE.SRC,
+          photoBig: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC_BIG_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC_BIG : item.PREVIEW_PICTURE.SRC,
           gif: item.GIF_PHOTO,
           video: item.VIDEO,
           description: item.PREVIEW_TEXT,
@@ -132,6 +134,7 @@ function App() {
           const itemPromo = {
             id: item.ID,
             defaultPicture: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC : item.PREVIEW_PICTURE.SRC,
+            photoDefault: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC2_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC2 : item.PREVIEW_PICTURE.SRC,
             description: item.PREVIEW_TEXT,
             morePhoto: item.MORE_PHOTO_RESIZE_IMAGE,
             offers: item.OFFERS,

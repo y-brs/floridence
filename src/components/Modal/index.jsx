@@ -13,7 +13,7 @@ import IconHeight from '/assets/icons/arrow.svg';
 
 import Style from './Modal.module.scss';
 
-function Modal({ showModal, closeModal, activeItemId, name, description, properties, offers, treeProps, id, price, morePhoto, defaultPicture, gif, video }) {
+function Modal({ showModal, closeModal, activeItemId, name, description, properties, offers, treeProps, id, price, morePhoto, defaultPicture, photoDefault, gif, video }) {
   const [valuesData, setValuesData] = useState({});
   const [activeAmount, setActiveAmount] = useState(null);
 
@@ -73,19 +73,19 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                     item.MORE_PHOTO_RESIZE_IMAGE.length > 0 &&
                     morePhoto.map((photo, index) => (
                       <SwiperSlide key={item.id}>
-                        <img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC_WEBP || photo.PIC_WEBP}`} alt={name} />
+                        <img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC2_WEBP || photo.PIC2_WEBP}`} alt={name} />
                       </SwiperSlide>
                     ))
                 )
               ) : morePhoto.length > 1 ? (
                 morePhoto.map((photo, index) => (
                   <SwiperSlide key={index}>
-                    <img className={Style.img} src={`https://floridence.com${photo.PIC_WEBP}`} alt={name} />
+                    <img className={Style.img} src={`https://floridence.com${photo.PIC2_WEBP}`} alt={name} />
                   </SwiperSlide>
                 ))
               ) : (
                 <SwiperSlide>
-                  <img className={Style.img} src={`https://floridence.com${defaultPicture}`} alt={name} />
+                  <img className={Style.img} src={`https://floridence.com${photoDefault}`} alt={name} />
                 </SwiperSlide>
               )}
               {video && (

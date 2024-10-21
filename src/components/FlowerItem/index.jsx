@@ -15,7 +15,7 @@ import ImageVertical from '/assets/icons/arrow.svg';
 
 import { AnimatePresence } from 'framer-motion';
 
-const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, price, name, id, properties, description, gif, video }) => {
+const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, morePhoto, price, name, id, properties, description, gif, video, counter }) => {
   const cartItems = useSelector(state => state.cart.items);
   const refCount = useRef(0);
   const refPriceSum = useRef(0);
@@ -122,6 +122,7 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
             treeProps={treeProps}
             morePhoto={morePhoto}
             defaultPicture={defaultPicture}
+            photoDefault={photoDefault}
             gif={gif}
             video={video}
           />
@@ -157,7 +158,7 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
                 <LazyLoad className='card__img'>
                   <img
                     className='card__img'
-                    src={`https://floridence.com${item.PIC}`}
+                    src={`https://floridence.com${counter % 10 === 8 || counter % 10 === 9 ? photoDefault : item.PIC}`}
                     alt={name}
                     onClick={() => {
                       setModalHash(id);
@@ -197,7 +198,7 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, morePhoto, pri
             ) : (
               <img
                 className='card__img'
-                src={`https://floridence.com${defaultPicture}`}
+                src={`https://floridence.com${counter % 10 === 8 || counter % 10 === 9 ? photoDefault : defaultPicture}`}
                 alt={name}
                 onClick={() => {
                   setModalHash(id);
