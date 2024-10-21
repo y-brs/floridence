@@ -11,7 +11,6 @@
   height: 21rem;
   transition: box-shadow 0.3s ease-in-out;
   cursor: pointer;
-  // box-shadow: 0 0 0.625rem 0.1562rem #06053226;
 
   &:hover {
     box-shadow: 0 0 1.25rem 0.3125rem #bf98a165;
@@ -124,7 +123,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  // aspect-ratio: 7/8;
 }
 
 .card__bot {
