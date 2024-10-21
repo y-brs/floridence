@@ -6,7 +6,7 @@ function SkeletonPromo() {
   return (
     <>
       <h2 className='promo__head'>
-        <Skeleton width={260} height={30} />
+        <Skeleton width={290} height={30} />
       </h2>
 
       <Swiper
@@ -33,11 +33,11 @@ function SkeletonPromo() {
           <SwiperSlide key={index}>
             <div className='skeleton_promo-item'>
               <div className='promo-item_image'>
-                <Skeleton width={68} height={68} circle={true} />
+                <Skeleton width={76} height={76} circle={true} />
               </div>
               <div className='promo-item_descr'>
-                <Skeleton width={120} height={15} />
-                <Skeleton width={60} height={20} />
+                <Skeleton width={140} height={18} />
+                <Skeleton width={65} height={20} />
               </div>
             </div>
           </SwiperSlide>

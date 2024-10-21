@@ -159,6 +159,8 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, 
                   <img
                     className='card__img'
                     src={`https://floridence.com${counter % 10 === 8 || counter % 10 === 9 ? photoDefault : item.PIC}`}
+                    loading='lazy'
+                    decoding='async'
                     alt={name}
                     onClick={() => {
                       setModalHash(id);
@@ -200,6 +202,8 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, 
                 className='card__img'
                 src={`https://floridence.com${counter % 10 === 8 || counter % 10 === 9 ? photoDefault : defaultPicture}`}
                 alt={name}
+                loading='lazy'
+                decoding='async'
                 onClick={() => {
                   setModalHash(id);
                   window.location.hash = id;

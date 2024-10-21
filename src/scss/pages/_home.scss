@@ -12,8 +12,8 @@
 }
 
 .LazyLoad {
-  opacity: 1;
-  // transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .is-visible {
@@ -320,7 +320,7 @@
 
 .skeleton_promo-item {
   width: 100%;
-  height: 97px;
+  height: 110px;
   padding: 0.8rem 1rem 1rem;
   display: flex;
   flex-wrap: nowrap;

@@ -73,19 +73,19 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                     item.MORE_PHOTO_RESIZE_IMAGE.length > 0 &&
                     morePhoto.map((photo, index) => (
                       <SwiperSlide key={item.id}>
-                        <img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC2_WEBP || photo.PIC2_WEBP}`} alt={name} />
+                        <img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC2_WEBP || photo.PIC2_WEBP}`} alt={name} loading='lazy' decoding='async' />
                       </SwiperSlide>
                     ))
                 )
               ) : morePhoto.length > 1 ? (
                 morePhoto.map((photo, index) => (
                   <SwiperSlide key={index}>
-                    <img className={Style.img} src={`https://floridence.com${photo.PIC2_WEBP}`} alt={name} />
+                    <img className={Style.img} src={`https://floridence.com${photo.PIC2_WEBP}`} alt={name} loading='lazy' decoding='async' />
                   </SwiperSlide>
                 ))
               ) : (
                 <SwiperSlide>
-                  <img className={Style.img} src={`https://floridence.com${photoDefault}`} alt={name} />
+                  <img className={Style.img} src={`https://floridence.com${photoDefault}`} alt={name} loading='lazy' decoding='async' />
                 </SwiperSlide>
               )}
               {video && (
@@ -97,7 +97,7 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
               )}
               {gif && (
                 <SwiperSlide>
-                  <img className={Style.img} src={`https://floridence.com${gif}`} alt={name} />
+                  <img className={Style.img} src={`https://floridence.com${gif}`} alt={name} loading='lazy' decoding='async' />
                 </SwiperSlide>
               )}
             </Swiper>
