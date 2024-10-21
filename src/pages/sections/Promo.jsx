@@ -25,10 +25,12 @@ function Promo({ isLoading }) {
     setSelectedItemId(id);
     setShowModal(true);
     setScrollPosition(window.scrollY);
+    document.body.style.overflowY = 'hidden';
   }, []);
 
   const closeModal = useCallback(() => {
     setShowModal(false);
+    document.body.style.overflowY = 'auto';
     window.scrollTo(0, scrollPosition);
   }, [scrollPosition]);
 
@@ -46,31 +48,9 @@ function Promo({ isLoading }) {
 
   useEffect(() => {
     const handleKeyDown = e => {
-      if (e.key === 'Escape' || e.keyCode === 27) {
-        closeModal();
-      }
+      if (e.key === 'Escape' || e.key === 27) closeModal();
     };
 
-    const handleModalStyles = () => {
-      const lockedModal = document.querySelector('.modal-overlay');
-      const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
-
-      const lockedContainer = document.querySelector('.header');
-
-      if (showModal) {
-        document.documentElement.style.overflow = 'hidden';
-        lockedContainer.style.paddingRight = lockedPaddingValue;
-        document.body.style.paddingRight = lockedPaddingValue;
-      } else {
-        setTimeout(() => {
-          document.documentElement.style.overflow = '';
-          document.body.style.paddingRight = '';
-          lockedContainer.style.paddingRight = '';
-        }, 200);
-      }
-    };
-
-    handleModalStyles();
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {

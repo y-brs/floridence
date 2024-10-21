@@ -11,33 +11,19 @@ function Cart({ cartItems }) {
   const cartItemsStorage = useSelector(state => state.cart.items);
   const basketCount = useSelector(state => state.cart.basketCount);
   const basketSum = useSelector(state => state.cart.basketSum);
-
   const dispatch = useDispatch();
-
   const itemsStorage = cartItemsStorage?.map(obj => <CartItem key={obj.id} {...obj} />);
 
   useEffect(() => {
     const handleKeyDown = e => {
-      if (e.key === 'Escape' || e.keyCode === 27) {
-        dispatch(closeCart());
-      }
+      if (e.key === 'Escape' || e.key === 27) dispatch(closeCart());
     };
 
     const handleModalStyles = () => {
-      const lockedModal = document.querySelector('.modal-overlay');
-      const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
-      const lockedContainer = document.querySelector('.header');
-
       if (isCartOpen) {
-        document.body.style.overflow = 'hidden';
-        lockedContainer.style.paddingRight = lockedPaddingValue;
-        document.body.style.paddingRight = lockedPaddingValue;
+        document.body.style.overflowY = 'hidden';
       } else {
-        setTimeout(() => {
-          document.body.style.overflow = '';
-          document.body.style.paddingRight = '';
-          lockedContainer.style.paddingRight = '';
-        }, 200);
+        document.body.style.overflowY = 'auto';
       }
     };
 
@@ -52,7 +38,7 @@ function Cart({ cartItems }) {
   return (
     <div className={`${isCartOpen ? Style.overlay : Style.overlay_closed} modal-overlay`} onClick={() => dispatch(closeCart())}>
       <div
-        className={Style.cart}
+        className={`${Style.cart} scrollbar`}
         onClick={e => {
           e.stopPropagation();
         }}>

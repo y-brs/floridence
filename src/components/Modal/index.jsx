@@ -48,7 +48,7 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
     }, [treeProps]);
 
   return (
-    <motion.div onClick={closeModal} variants={backdrop} initial='hidden' animate='visible' exit='exit' className={`${Style.overlay} modal-overlay`}>
+    <motion.div onClick={closeModal} variants={backdrop} initial='hidden' animate='visible' exit='exit' className={`${Style.overlay} scrollbar modal-overlay`}>
       <div className={Style.modal} onClick={e => e.stopPropagation()}>
         <button className={Style.btn_close} onClick={() => closeModal()}>
           <svg className={Style.btn_close_svg} width='34' height='34' viewBox='0 0 34 34' fill='none'>

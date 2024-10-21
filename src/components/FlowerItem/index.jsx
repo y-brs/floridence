@@ -19,40 +19,24 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, 
   const cartItems = useSelector(state => state.cart.items);
   const refCount = useRef(0);
   const refPriceSum = useRef(0);
-
   const [itemId, setItemId] = useState();
   const [showModal, setShowModal] = useState();
   const [offersData, setOffersData] = useState([]);
   const [values, setValues] = useState([]);
-
   const [modalHash, setModalHash] = useState();
   const [scrollPosition, setScrollPosition] = useState(0);
-
-  const lockedContainer = document.querySelector('.header');
 
   const openModal = useCallback(hash => {
     setShowModal(true);
     setModalHash(hash);
     setScrollPosition(window.scrollY);
-
-    const lockedModal = document.querySelector('.modal-overlay');
-    const lockedPaddingValue = window.innerWidth - lockedModal.offsetWidth + 'px';
-
-    document.body.style.overflow = 'hidden';
-    document.body.style.paddingRight = lockedPaddingValue;
-    lockedContainer.style.paddingRight = lockedPaddingValue;
+    document.body.style.overflowY = 'hidden';
   }, []);
 
   const closeModal = useCallback(() => {
     setShowModal(false);
     setModalHash(null);
-
-    setTimeout(() => {
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
-      lockedContainer.style.paddingRight = '';
-    }, 200);
-
+    document.body.style.overflowY = 'auto';
     window.location.hash = '';
     const urlWithoutHash = window.location.href.split('#')[0]; // Получаем URL без хэша
     window.history.replaceState({}, document.title, urlWithoutHash); // Обновляем URL без хэша
@@ -77,14 +61,10 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, 
   useEffect(() => {
     const handleHashChange = () => {
       const urlHash = window.location.hash.substring(1);
-
-      if (urlHash === id.toString()) {
-        openModal(urlHash);
-      }
+      if (urlHash === id.toString()) openModal(urlHash);
     };
 
-    handleHashChange(); // Проверяем при загрузке страницы
-
+    handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
 
     return () => {
@@ -94,9 +74,7 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, 
 
   useEffect(() => {
     const handleKeyDown = e => {
-      if (e.key === 'Escape' || e.key === 27) {
-        closeModal();
-      }
+      if (e.key === 'Escape' || e.key === 27) closeModal();
     };
 
     document.addEventListener('keydown', handleKeyDown);
