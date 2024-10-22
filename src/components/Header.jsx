@@ -99,8 +99,8 @@ function Header({}) {
             </button>
           </div>
 
-          <div className='header__bot'>
-            <nav className='header__nav'>
+          <div className='header__bot '>
+            <nav className='header__nav scrollbar'>
               <ul className='header__nav-list'>
                 {linksHeader.map((link, index) => (
                   <li key={index} className='header__nav-item'>
