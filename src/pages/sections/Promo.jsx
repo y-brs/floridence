@@ -44,7 +44,9 @@ function Promo({ isLoading }) {
     </SwiperSlide>
   ));
 
-  const modalItem = promoItemsRedux.filter(obj => obj.id == selectedItemId).map(obj => <Modal key={obj.id} showModal={showModal} closeModal={closeModal} {...obj} />);
+  const modalItem = promoItemsRedux
+    .filter(obj => obj.id == selectedItemId)
+    .map(obj => <Modal key={obj.id} showModal={showModal} closeModal={closeModal} {...obj} />);
 
   useEffect(() => {
     const handleKeyDown = e => {

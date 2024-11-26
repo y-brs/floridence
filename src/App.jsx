@@ -26,11 +26,13 @@ function App() {
   const currentPage = useRef(1);
   const [pageCount, setPageCount] = useState(6);
 
-  // const MODE = 'dev';
+  const MODE = 'dev';
 
   async function fetchMainData(page) {
     try {
-      const bitrixResponse = await axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlist&page=${page}`);
+      const bitrixResponse = await axios.get(
+        `https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlist&page=${page}`
+      );
 
       setPageCount(bitrixResponse.data.pagination.pageCount);
 
@@ -39,9 +41,24 @@ function App() {
       bitrixResponse.data.list.map(item => {
         const itemHomeData = {
           id: Number(item.ID),
-          defaultPicture: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC : item.PREVIEW_PICTURE.SRC,
-          photoDefault: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC2_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC2 : item.PREVIEW_PICTURE.SRC,
-          photoBig: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC_BIG_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC_BIG : item.PREVIEW_PICTURE.SRC,
+          defaultPicture:
+            item.RESIZE_IMAGE && isWebP
+              ? item.RESIZE_IMAGE.PIC_WEBP
+              : item.RESIZE_IMAGE
+              ? item.RESIZE_IMAGE.PIC
+              : item.PREVIEW_PICTURE.SRC,
+          photoDefault:
+            item.RESIZE_IMAGE && isWebP
+              ? item.RESIZE_IMAGE.PIC2_WEBP
+              : item.RESIZE_IMAGE
+              ? item.RESIZE_IMAGE.PIC2
+              : item.PREVIEW_PICTURE.SRC,
+          photoBig:
+            item.RESIZE_IMAGE && isWebP
+              ? item.RESIZE_IMAGE.PIC_BIG_WEBP
+              : item.RESIZE_IMAGE
+              ? item.RESIZE_IMAGE.PIC_BIG
+              : item.PREVIEW_PICTURE.SRC,
           gif: item.GIF_PHOTO,
           video: item.VIDEO,
           description: item.PREVIEW_TEXT,
@@ -72,9 +89,15 @@ function App() {
         setIsLoading(true);
 
         const [categoryResponse, hitResponse, cartResponse] = await axios.all([
-          axios.get('https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=sectionlist'),
-          axios.get('https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit'),
-          axios.get('https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount'),
+          axios.get(
+            'https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=sectionlist'
+          ),
+          axios.get(
+            'https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=elementlisthit'
+          ),
+          axios.get(
+            'https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount'
+          ),
         ]);
 
         if (typeof MODE === 'undefined') {
@@ -90,11 +113,15 @@ function App() {
             data.append('signedParamsString', BX.Sale.BasketComponent.signedParamsString);
 
             try {
-              const response = await axios.post('https://floridence.com/bitrix/components/bitrix/sale.basket.basket/ajax.php', data, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
-              });
+              const response = await axios.post(
+                'https://floridence.com/bitrix/components/bitrix/sale.basket.basket/ajax.php',
+                data,
+                {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                }
+              );
 
               response.data.BASKET_DATA.BASKET_ITEM_RENDER_DATA.map((item, index) => {
                 const itemData = {
@@ -133,8 +160,18 @@ function App() {
         hitResponse.data.map(item => {
           const itemPromo = {
             id: item.ID,
-            defaultPicture: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC : item.PREVIEW_PICTURE.SRC,
-            photoDefault: item.RESIZE_IMAGE && isWebP ? item.RESIZE_IMAGE.PIC2_WEBP : item.RESIZE_IMAGE ? item.RESIZE_IMAGE.PIC2 : item.PREVIEW_PICTURE.SRC,
+            defaultPicture:
+              item.RESIZE_IMAGE && isWebP
+                ? item.RESIZE_IMAGE.PIC_WEBP
+                : item.RESIZE_IMAGE
+                ? item.RESIZE_IMAGE.PIC
+                : item.PREVIEW_PICTURE.SRC,
+            photoDefault:
+              item.RESIZE_IMAGE && isWebP
+                ? item.RESIZE_IMAGE.PIC2_WEBP
+                : item.RESIZE_IMAGE
+                ? item.RESIZE_IMAGE.PIC2
+                : item.PREVIEW_PICTURE.SRC,
             description: item.PREVIEW_TEXT,
             morePhoto: item.MORE_PHOTO_RESIZE_IMAGE,
             offers: item.OFFERS,

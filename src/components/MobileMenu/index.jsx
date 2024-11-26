@@ -54,7 +54,10 @@ function MobileMenu() {
           <ul className={Style.phonelist}>
             {footerBottomPhones.map((item, index) => (
               <li key={index} className={Style.phonelist_item}>
-                <a href={'tel:' + item.href} className={Style.phonelist_link} onClick={() => dispatch(closeMenu())}>
+                <a
+                  href={'tel:' + item.href}
+                  className={Style.phonelist_link}
+                  onClick={() => dispatch(closeMenu())}>
                   {item.number}
                   <span>{item.place}</span>
                 </a>
@@ -65,7 +68,10 @@ function MobileMenu() {
           <ul className={Style.sociallist}>
             {footerTopSocial.map((item, index) => (
               <li key={index} className={Style.sociallist_item}>
-                <a href={item.href} className={Style.sociallist_link} onClick={() => dispatch(closeMenu())}>
+                <a
+                  href={item.href}
+                  className={Style.sociallist_link}
+                  onClick={() => dispatch(closeMenu())}>
                   <img src={item.imgUrl} alt={item.name} loading='lazy' decoding='sync' />
                 </a>
               </li>
@@ -85,7 +91,10 @@ function MobileMenu() {
           <ul className={Style.copylist}>
             {footerCopyLinks.map((item, index) => (
               <li key={index} className={Style.copylist_item}>
-                <a href={item.href} className={Style.copylist_item_link} onClick={() => dispatch(closeMenu())}>
+                <a
+                  href={item.href}
+                  className={Style.copylist_item_link}
+                  onClick={() => dispatch(closeMenu())}>
                   {item.name}
                 </a>
               </li>

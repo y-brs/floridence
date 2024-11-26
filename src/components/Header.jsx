@@ -48,10 +48,21 @@ function Header({}) {
         <div className='header__container'>
           <div className='header__top'>
             {scrolled ? (
-              <img src={ImageLogoMobile} className='header__top-logoMobile' alt='Флориденс' onClick={() => window.scrollTo(0, 0)} />
+              <img
+                src={ImageLogoMobile}
+                className='header__top-logoMobile'
+                alt='Флориденс'
+                onClick={() => window.scrollTo(0, 0)}
+              />
             ) : (
               <HashLink to='/'>
-                <img src={ImageLogo} alt='Флориденс' width='200' height='45' className='header__top-logo' />
+                <img
+                  src={ImageLogo}
+                  alt='Флориденс'
+                  width='200'
+                  height='45'
+                  className='header__top-logo'
+                />
               </HashLink>
             )}
 
@@ -79,7 +90,10 @@ function Header({}) {
               </ul>
             </ul>
 
-            <button className='header__burger' onClick={() => dispatch(openMenu())} aria-label='Открыть меню'>
+            <button
+              className='header__burger'
+              onClick={() => dispatch(openMenu())}
+              aria-label='Открыть меню'>
               <svg width='21' height='19' viewBox='0 0 21 19' fill='none'>
                 <path
                   fillRule='evenodd'
@@ -90,7 +104,10 @@ function Header({}) {
               </svg>
             </button>
 
-            <button className='header__burger' onClick={() => dispatch(openMenu())} aria-label='Открыть меню'>
+            <button
+              className='header__burger'
+              onClick={() => dispatch(openMenu())}
+              aria-label='Открыть меню'>
               <svg width='23' height='19' viewBox='0 0 23 19' fill='none'>
                 <path d='M0 2.06458H23' stroke='black' strokeWidth='3' />
                 <path d='M0 16.5162H23' stroke='black' strokeWidth='3' />

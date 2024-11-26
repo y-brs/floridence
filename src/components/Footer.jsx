@@ -76,7 +76,14 @@ function Footer() {
             <div className='footer-bot__payment'>
               <div className='footer-bot__payment-list'>
                 {footerPayment.map((img, index) => (
-                  <img key={index} src={img.imgUrl} alt={img.alt} className='footer-bot__payment-img' loading='lazy' decoding='sync' />
+                  <img
+                    key={index}
+                    src={img.imgUrl}
+                    alt={img.alt}
+                    className='footer-bot__payment-img'
+                    loading='lazy'
+                    decoding='sync'
+                  />
                 ))}
               </div>
             </div>

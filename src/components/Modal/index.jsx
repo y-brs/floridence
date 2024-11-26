@@ -13,7 +13,23 @@ import IconHeight from '/assets/icons/arrow.svg';
 
 import Style from './Modal.module.scss';
 
-function Modal({ showModal, closeModal, activeItemId, name, description, properties, offers, treeProps, id, price, morePhoto, defaultPicture, photoDefault, gif, video }) {
+function Modal({
+  showModal,
+  closeModal,
+  activeItemId,
+  name,
+  description,
+  properties,
+  offers,
+  treeProps,
+  id,
+  price,
+  morePhoto,
+  defaultPicture,
+  photoDefault,
+  gif,
+  video,
+}) {
   const [valuesData, setValuesData] = useState({});
   const [activeAmount, setActiveAmount] = useState(null);
 
@@ -44,14 +60,26 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
   treeProps &&
     useEffect(() => {
       treeProps?.length > 0 && setValuesData(treeProps[0].VALUES);
-      treeProps?.length > 0 && setActiveAmount(activeItemId || Object.values(treeProps[0]?.VALUES).slice(1)[0].ID);
+      treeProps?.length > 0 &&
+        setActiveAmount(activeItemId || Object.values(treeProps[0]?.VALUES).slice(1)[0].ID);
     }, [treeProps]);
 
   return (
-    <motion.div onClick={closeModal} variants={backdrop} initial='hidden' animate='visible' exit='exit' className={`${Style.overlay} scrollbar modal-overlay`}>
+    <motion.div
+      onClick={closeModal}
+      variants={backdrop}
+      initial='hidden'
+      animate='visible'
+      exit='exit'
+      className={`${Style.overlay} scrollbar modal-overlay`}>
       <div className={Style.modal} onClick={e => e.stopPropagation()}>
         <button className={Style.btn_close} onClick={() => closeModal()}>
-          <svg className={Style.btn_close_svg} width='34' height='34' viewBox='0 0 34 34' fill='none'>
+          <svg
+            className={Style.btn_close_svg}
+            width='34'
+            height='34'
+            viewBox='0 0 34 34'
+            fill='none'>
             <path d='M2 2L32 32' stroke='black' strokeWidth='3' />
             <path d='M32 2L2 32' stroke='black' strokeWidth='3' />
           </svg>
@@ -71,33 +99,65 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                   (item, index) =>
                     item.TREE.PROP_118 == activeAmount &&
                     item.MORE_PHOTO_RESIZE_IMAGE.length > 0 &&
-                    morePhoto.map((photo, index) => (
+                    morePhoto?.map((photo, index) => (
                       <SwiperSlide key={item.id}>
-                        <img className={Style.img} src={`https://floridence.com${item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC2_WEBP || photo.PIC2_WEBP}`} alt={name} loading='lazy' decoding='async' />
+                        <img
+                          className={Style.img}
+                          src={`https://floridence.com${
+                            item.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC2_WEBP || photo.PIC2_WEBP
+                          }`}
+                          alt={name}
+                          loading='lazy'
+                          decoding='async'
+                        />
                       </SwiperSlide>
                     ))
                 )
-              ) : morePhoto.length > 1 ? (
-                morePhoto.map((photo, index) => (
+              ) : morePhoto?.length > 1 ? (
+                morePhoto?.map((photo, index) => (
                   <SwiperSlide key={index}>
-                    <img className={Style.img} src={`https://floridence.com${photo.PIC2_WEBP}`} alt={name} loading='lazy' decoding='async' />
+                    <img
+                      className={Style.img}
+                      src={`https://floridence.com${photo.PIC2_WEBP}`}
+                      alt={name}
+                      loading='lazy'
+                      decoding='async'
+                    />
                   </SwiperSlide>
                 ))
               ) : (
                 <SwiperSlide>
-                  <img className={Style.img} src={`https://floridence.com${photoDefault}`} alt={name} loading='lazy' decoding='async' />
+                  <img
+                    className={Style.img}
+                    src={`https://floridence.com${photoDefault}`}
+                    alt={name}
+                    loading='lazy'
+                    decoding='async'
+                  />
                 </SwiperSlide>
               )}
               {video && (
                 <SwiperSlide>
-                  <video className={Style.img} muted loop controls={false} autoPlay={true} playsInline={true}>
+                  <video
+                    className={Style.img}
+                    muted
+                    loop
+                    controls={false}
+                    autoPlay={true}
+                    playsInline={true}>
                     <source src={`https://floridence.com${video}`} type='video/mp4' />
                   </video>
                 </SwiperSlide>
               )}
               {gif && (
                 <SwiperSlide>
-                  <img className={Style.img} src={`https://floridence.com${gif}`} alt={name} loading='lazy' decoding='async' />
+                  <img
+                    className={Style.img}
+                    src={`https://floridence.com${gif}`}
+                    alt={name}
+                    loading='lazy'
+                    decoding='async'
+                  />
                 </SwiperSlide>
               )}
             </Swiper>
@@ -133,7 +193,10 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                 {Object.values(valuesData)
                   .slice(1)
                   .map((prop, index) => (
-                    <li className={activeAmount === prop.ID ? Style.active : Style.non_active} key={index} onClick={() => setActiveAmount(prop.ID)}>
+                    <li
+                      className={activeAmount === prop.ID ? Style.active : Style.non_active}
+                      key={index}
+                      onClick={() => setActiveAmount(prop.ID)}>
                       {prop.NAME}
                     </li>
                   ))}
@@ -156,7 +219,17 @@ function Modal({ showModal, closeModal, activeItemId, name, description, propert
                       />
                     )
                 )
-              : showModal && <ModalPriceBtn key={id} id={Number(id)} name={name} priceItem={price[1]?.PRICE} closeModal={closeModal} imageSrc={morePhoto[0]?.PIC} showModal={showModal} />}
+              : showModal && (
+                  <ModalPriceBtn
+                    key={id}
+                    id={Number(id)}
+                    name={name}
+                    priceItem={price[1]?.PRICE}
+                    closeModal={closeModal}
+                    imageSrc={morePhoto[0]?.PIC}
+                    showModal={showModal}
+                  />
+                )}
           </div>
         </div>
       </div>

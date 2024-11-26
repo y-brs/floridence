@@ -15,7 +15,22 @@ import ImageVertical from '/assets/icons/arrow.svg';
 
 import { AnimatePresence } from 'framer-motion';
 
-const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, morePhoto, price, name, id, properties, description, gif, video, counter }) => {
+const FlowerItem = ({
+  product,
+  offers,
+  treeProps,
+  defaultPicture,
+  photoDefault,
+  morePhoto,
+  price,
+  name,
+  id,
+  properties,
+  description,
+  gif,
+  video,
+  counter,
+}) => {
   const cartItems = useSelector(state => state.cart.items);
   const refCount = useRef(0);
   const refPriceSum = useRef(0);
@@ -144,7 +159,9 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, 
                 <LazyLoad className='card__img'>
                   <img
                     className='card__img'
-                    src={`https://floridence.com${counter % 10 === 8 || counter % 10 === 9 ? photoDefault : item.PIC}`}
+                    src={`https://floridence.com${
+                      counter % 10 === 8 || counter % 10 === 9 ? photoDefault : item.PIC
+                    }`}
                     loading='lazy'
                     decoding='async'
                     alt={name}
@@ -186,7 +203,9 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, 
             ) : (
               <img
                 className='card__img'
-                src={`https://floridence.com${counter % 10 === 8 || counter % 10 === 9 ? photoDefault : defaultPicture}`}
+                src={`https://floridence.com${
+                  counter % 10 === 8 || counter % 10 === 9 ? photoDefault : defaultPicture
+                }`}
                 alt={name}
                 loading='lazy'
                 decoding='async'
@@ -215,17 +234,26 @@ const FlowerItem = ({ product, offers, treeProps, defaultPicture, photoDefault, 
               Вариации букета:{' '}
               {values
                 .slice(1)
-                .map((item, index) => (index === values.slice(1).length - 1 ? item.NAME : item.NAME + ', '))
+                .map((item, index) =>
+                  index === values.slice(1).length - 1 ? item.NAME : item.NAME + ', '
+                )
                 .join('')}
             </p>
           )}
         </div>
         <div className='card__buy'>
-          <span className='card__price'>{new Intl.NumberFormat('ru-RU', { maximumSignificantDigits: 3 }).format(price['1']?.PRICE ? price['1']?.PRICE : offers['0']?.PRICES['1'].PRICE)} ₽</span>
+          <span className='card__price'>
+            {new Intl.NumberFormat('ru-RU', { maximumSignificantDigits: 3 }).format(
+              price['1']?.PRICE ? price['1']?.PRICE : offers['0']?.PRICES['1'].PRICE
+            )}{' '}
+            ₽
+          </span>
 
           <FlowerItemButton
             id={Number(Object.values(offers).length > 1 ? offersData[0]?.ID : id)}
-            oneItemPrice={Object.values(offers).length > 1 ? offersData[0]?.PRICES[1]?.PRICE : price[1]?.PRICE}
+            oneItemPrice={
+              Object.values(offers).length > 1 ? offersData[0]?.PRICES[1]?.PRICE : price[1]?.PRICE
+            }
             price={refPriceSum.current}
             count={refCount.current}
             imageUrl={offersData[0]?.MORE_PHOTO_RESIZE_IMAGE[0]?.PIC || morePhoto[0]?.PIC}

@@ -24,12 +24,18 @@ export const updateCartOnBitrix = async (id, action, quantity, items, dispatch) 
 
     try {
       const [response, cartStateResponse] = await Promise.all([
-        axios.post('https://floridence.com/bitrix/components/bitrix/sale.basket.basket/ajax.php', data, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }),
-        axios.get(`https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount`),
+        axios.post(
+          'https://floridence.com/bitrix/components/bitrix/sale.basket.basket/ajax.php',
+          data,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        ),
+        axios.get(
+          `https://floridence.com/bitrix/services/main/ajax.php?c=goodde:ajax&mode=class&action=basketcount`
+        ),
       ]);
       response?.data?.BASKET_DATA?.BASKET_ITEM_RENDER_DATA?.map((item, index) => {
         const itemData = {

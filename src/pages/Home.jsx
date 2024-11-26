@@ -14,7 +14,9 @@ function Home({ isLoading, showMore }) {
   const dispatch = useDispatch();
   const categoryItems = useSelector(state => state.category.categories);
   const carItemLength = useSelector(state => state.cart.basketCount);
-  const section = categoryItems.map((item, index) => <Section key={item.id} isLoading={isLoading} showMore={showMore} {...item} />);
+  const section = categoryItems.map((item, index) => (
+    <Section key={item.id} isLoading={isLoading} showMore={showMore} {...item} />
+  ));
   const bannerInfo = window.banner;
 
   return (

@@ -36,7 +36,9 @@ function Cart({ cartItems }) {
   }, [isCartOpen]);
 
   return (
-    <div className={`${isCartOpen ? Style.overlay : Style.overlay_closed} modal-overlay`} onClick={() => dispatch(closeCart())}>
+    <div
+      className={`${isCartOpen ? Style.overlay : Style.overlay_closed} modal-overlay`}
+      onClick={() => dispatch(closeCart())}>
       <div
         className={`${Style.cart} scrollbar`}
         onClick={e => {
@@ -54,7 +56,15 @@ function Cart({ cartItems }) {
           {basketCount > 0 ? (
             <>
               <h3 className={Style.cart__head}>
-                {basketCount} {basketCount == 1 ? 'товар' : basketCount > 1 && basketCount < 5 ? 'товара' : basketCount > 5 && basketCount < 21 ? 'товаров' : 'товар'} на сумму {basketSum} рублей
+                {basketCount}{' '}
+                {basketCount == 1
+                  ? 'товар'
+                  : basketCount > 1 && basketCount < 5
+                  ? 'товара'
+                  : basketCount > 5 && basketCount < 21
+                  ? 'товаров'
+                  : 'товар'}{' '}
+                на сумму {basketSum} рублей
               </h3>
               <div className={Style.cart__items}>{isCartOpen && itemsStorage}</div>
               {cartItems[0]?.BASKET_DATA?.TOTAL_RENDER_DATA?.DISCOUNT && (
@@ -66,7 +76,9 @@ function Cart({ cartItems }) {
 
                   <div className={Style.cart__price_item}>
                     <p className={Style.cart__price_name}>Скидка:</p>
-                    <p className={Style.cart__price_amount}>{cartItems[0]?.BASKET_DATA?.TOTAL_RENDER_DATA?.DISCOUNT} %</p>
+                    <p className={Style.cart__price_amount}>
+                      {cartItems[0]?.BASKET_DATA?.TOTAL_RENDER_DATA?.DISCOUNT} %
+                    </p>
                   </div>
                 </div>
               )}

@@ -7,7 +7,9 @@ function Section({ id, name, showMore, code, isLoading }) {
   const sectionRef = useRef();
   const itemsHome = useSelector(state => state.item.items);
 
-  const catalogItems = itemsHome.filter(obj => obj.sectionId == id).map((obj, index) => <FlowerItem key={obj.id} counter={index} {...obj} />);
+  const catalogItems = itemsHome
+    .filter(obj => obj.sectionId == id)
+    .map((obj, index) => <FlowerItem key={obj.id} counter={index} {...obj} />);
 
   useEffect(() => {
     const options = {
