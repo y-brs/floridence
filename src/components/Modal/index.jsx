@@ -166,12 +166,13 @@ function Modal({
           <div className={Style.description}>
             <h2 className={Style.name}>{name}</h2>
             <p className={Style.about}>
-              {description
-                .replace(/&#40;/g, '(')
-                .replace(/&#41;/g, ')')
-                .replace(/&nbsp;/g, '\u00A0')
-                .replace(/<br \/>/g, '\n\n')
-                .replace(/&quot;/g, '"')}
+              {description &&
+                description
+                  .replace(/&#40;/g, '(')
+                  .replace(/&#41;/g, ')')
+                  .replace(/&nbsp;/g, '\u00A0')
+                  .replace(/<br \/>/g, '\n\n')
+                  .replace(/&quot;/g, '"')}
             </p>
 
             <div className={Style.sizes}>
